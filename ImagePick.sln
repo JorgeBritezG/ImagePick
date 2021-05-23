@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.Api", "ImagePick.Api\ImagePick.Api.csproj", "{2CDD0E2F-0BB5-42D1-A5D8-C0BED9BC569A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.Api", "ImagePick.Api\ImagePick.Api.csproj", "{2CDD0E2F-0BB5-42D1-A5D8-C0BED9BC569A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.DistributedServices", "1.DistributedServices", "{9558CC41-0A91-4D84-A21D-4875A25C98E2}"
 EndProject
@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.DataAccess", "3.DataAcces
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.CrossCutting", "4.CrossCutting", "{B5C5B91C-5E85-4C02-862C-389A48D22885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.Application", "ImagePick.Application\ImagePick.Application.csproj", "{E52E6BCF-D4B1-4E1B-9D51-43C08F06DA51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.Application", "ImagePick.Application\ImagePick.Application.csproj", "{E52E6BCF-D4B1-4E1B-9D51-43C08F06DA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.Application.Contracts", "ImagePick.Application.Contracts\ImagePick.Application.Contracts.csproj", "{25470FC6-0AA3-40DB-B85F-4CE1A55379DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.Application.Contracts", "ImagePick.Application.Contracts\ImagePick.Application.Contracts.csproj", "{25470FC6-0AA3-40DB-B85F-4CE1A55379DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.DataAccess", "ImagePick.DataAccess\ImagePick.DataAccess.csproj", "{7C1143C8-18BD-4550-887F-FEF95C99ED32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.DataAccess", "ImagePick.DataAccess\ImagePick.DataAccess.csproj", "{7C1143C8-18BD-4550-887F-FEF95C99ED32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.DataAccess.Contracts", "ImagePick.DataAccess.Contracts\ImagePick.DataAccess.Contracts.csproj", "{46BA056C-F4CC-4202-A1D8-A19AD2FEC2F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.DataAccess.Contracts", "ImagePick.DataAccess.Contracts\ImagePick.DataAccess.Contracts.csproj", "{46BA056C-F4CC-4202-A1D8-A19AD2FEC2F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.CrossCutting", "ImagePick.CrossCutting\ImagePick.CrossCutting.csproj", "{D310C473-4659-4208-9C43-3B97F1A99120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.CrossCutting", "ImagePick.CrossCutting\ImagePick.CrossCutting.csproj", "{D310C473-4659-4208-9C43-3B97F1A99120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
