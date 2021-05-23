@@ -1,3 +1,4 @@
+using ImagePick.CrossCutting;
 using ImagePick.DataAccess;
 using ImagePick.DataAccess.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -21,6 +22,8 @@ namespace ImagePick.Api
             services.AddTransient<IImagePickDbContext, ImagePickDbContext>();
             services.AddDbContext<ImagePickDbContext>(options =>
                 options.UseSqlite("Data Source=ImagePickDb.db"));
+
+            IoCRegister.AddRegistration(services);
 
         }
 
