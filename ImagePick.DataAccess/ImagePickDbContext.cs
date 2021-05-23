@@ -1,4 +1,5 @@
-﻿using ImagePick.DataAccess.Contracts.Entities;
+﻿using ImagePick.DataAccess.Contracts;
+using ImagePick.DataAccess.Contracts.Entities;
 using ImagePick.DataAccess.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace ImagePick.DataAccess
 {
-    public class ImagePickDbContext : DbContext
+    public class ImagePickDbContext : DbContext, IImagePickDbContext
     {
 
         public ImagePickDbContext( DbContextOptions options ) : base(options)
