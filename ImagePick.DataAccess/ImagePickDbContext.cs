@@ -1,4 +1,5 @@
 ﻿using ImagePick.DataAccess.Contracts.Entities;
+using ImagePick.DataAccess.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace ImagePick.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            
+            AlbumEntityConfig.SetEntityBuilder(modelBuilder.Entity<Album>());
 
 
 
