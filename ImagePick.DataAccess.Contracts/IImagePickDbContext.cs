@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ImagePick.DataAccess.Contracts
 {
-    interface IImagePickDbContext
+    public interface IImagePickDbContext
     {
 
         DbSet<User> Users { get; set; }
