@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ImagePick.DataAccess.Contracts\ImagePick.DataAccess.Contracts.csproj" />
+    <ProjectReference Include="..\ImagePick.DataAccess\ImagePick.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
