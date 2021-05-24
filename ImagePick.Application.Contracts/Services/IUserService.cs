@@ -10,7 +10,7 @@ namespace ImagePick.Application.Contracts.Services
 
         Task<UserApplication> GetAsync( int id );
 
-        Task<UserApplication> DeleteAsync( int id );
+        Task<bool> DeleteAsync( int id );
 
         Task<UserApplication> UpdateAsync( UserApplication entity );
 
