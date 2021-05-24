@@ -10,6 +10,7 @@ namespace ImagePick.Application.Contracts.Models
 
         [Required]
         [MaxLength(256)]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string Name { get; set; }
