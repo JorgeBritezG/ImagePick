@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ImagePick.Application.Contracts\ImagePick.Application.Contracts.csproj" />
     <ProjectReference Include="..\ImagePick.DataAccess.Contracts\ImagePick.DataAccess.Contracts.csproj" />
   </ItemGroup>
 

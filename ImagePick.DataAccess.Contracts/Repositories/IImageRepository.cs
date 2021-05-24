@@ -10,7 +10,7 @@ namespace ImagePick.DataAccess.Contracts.Repositories
 
         Task<Image> GetAsync( int id );
 
-        Task<Image> DeleteAsync( int id );
+        Task<bool> DeleteAsync( int id );
 
         Task<Image> UpdateAsync( Image entity );
 
