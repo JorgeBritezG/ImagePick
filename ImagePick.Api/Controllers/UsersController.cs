@@ -88,7 +88,7 @@ namespace ImagePick.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<ActionResult<UserApplication>> Put(
             [FromBody] UserApplication model )
         {
@@ -112,6 +112,8 @@ namespace ImagePick.Api.Controllers
             }
         }
 
+
+        [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete( int id )
         {
             try
