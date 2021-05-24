@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace ImagePick.DataAccess.Repositories
 {
-    public class AlbumRepository : IAlbumRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IImagePickDbContext _imagePickDbContext;
 
-        public AlbumRepository( IImagePickDbContext imagePickDbContext )
+        public UserRepository( IImagePickDbContext imagePickDbContext )
         {
             _imagePickDbContext = imagePickDbContext;
         }
 
-        public async Task<Album> AddAsync( Album entity )
+        public async Task<User> AddAsync( User entity )
         {
             try
             {
-                await _imagePickDbContext.Albums.AddAsync(entity);
+                await _imagePickDbContext.Users.AddAsync(entity);
 
                 await _imagePickDbContext.SaveChangesAsync();
 
@@ -39,10 +39,10 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                var entity = await _imagePickDbContext.Albums
+                var entity = await _imagePickDbContext.Users
                     .FirstOrDefaultAsync(x => x.Id == id);
 
-                _imagePickDbContext.Albums.Remove(entity);
+                _imagePickDbContext.Users.Remove(entity);
 
                 await _imagePickDbContext.SaveChangesAsync();
 
@@ -58,11 +58,11 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<IEnumerable<Album>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
             try
             {
-                var result = await _imagePickDbContext.Albums
+                var result = await _imagePickDbContext.Users
                     .ToListAsync();
 
                 return result;
@@ -75,11 +75,11 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<Album> GetAsync( int id )
+        public async Task<User> GetAsync( int id )
         {
             try
             {
-                var entity = await _imagePickDbContext.Albums
+                var entity = await _imagePickDbContext.Users
                     .FirstOrDefaultAsync(x => x.Id == id);
 
                 return entity;
@@ -92,11 +92,11 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<Album> UpdateAsync( Album entity )
+        public async Task<User> UpdateAsync( User entity )
         {
             try
             {
-                _imagePickDbContext.Albums.Update(entity);
+                _imagePickDbContext.Users.Update(entity);
 
                 await _imagePickDbContext.SaveChangesAsync();
 
