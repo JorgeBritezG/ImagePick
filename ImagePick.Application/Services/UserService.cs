@@ -41,6 +41,11 @@ namespace ImagePick.Application.Services
         {
             var entity = await _albumRepository.GetAsync(id);
 
+            if (entity == null )
+            {
+                return null;
+            }
+
             return UserMapper.Map(entity);
         }
 
