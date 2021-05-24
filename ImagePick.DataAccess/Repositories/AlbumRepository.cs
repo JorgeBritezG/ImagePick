@@ -36,7 +36,7 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task DeleteAsync( int id )
+        public async Task<bool> DeleteAsync( int id )
         {
             try
             {
@@ -47,9 +47,13 @@ namespace ImagePick.DataAccess.Repositories
 
                 await _imagePickDbContext.SaveChangesAsync();
 
+                return true;
+
             }
             catch ( Exception )
             {
+
+                return false;
 
                 throw;
             }

@@ -4,6 +4,7 @@ using ImagePick.Application.Contracts.Services;
 using ImagePick.DataAccess.Contracts.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ImagePick.Application.Services
@@ -26,22 +27,28 @@ namespace ImagePick.Application.Services
 
         public async Task<bool> DeleteAsync( int id )
         {
-            await _albumRepository.DeleteAsync(id);
+            return await _albumRepository.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<AlbumApplication>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var result = await _albumRepository.GetAllAsync();
+
+            return result.Select(AlbumMapper.Map);
         }
 
         public async Task<AlbumApplication> GetAsync( int id )
         {
-            throw new NotImplementedException();
+            var entity = await _albumRepository.GetAsync(id);
+
+            return AlbumMapper.Map(entity);
         }
 
         public async Task<AlbumApplication> UpdateAsync( AlbumApplication entity )
         {
-            throw new NotImplementedException();
+            var result = await _albumRepository.UpdateAsync(AlbumMapper.Map(entity));
+
+            return AlbumMapper.Map(result);
         }
     }
 }
