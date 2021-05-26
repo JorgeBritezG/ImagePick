@@ -7,7 +7,6 @@ using ImagePick.Application.Unit.Tests.Stubs;
 using ImagePick.DataAccess.Contracts.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ImagePick.Application.Unit.Tests.Services
