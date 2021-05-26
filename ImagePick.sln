@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.DataAccess.Contra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.CrossCutting", "ImagePick.CrossCutting\ImagePick.CrossCutting.csproj", "{D310C473-4659-4208-9C43-3B97F1A99120}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.Application.Unit.Tests", "ImagePick.Application.Tests\ImagePick.Application.Unit.Tests.csproj", "{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{D310C473-4659-4208-9C43-3B97F1A99120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D310C473-4659-4208-9C43-3B97F1A99120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D310C473-4659-4208-9C43-3B97F1A99120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{7C1143C8-18BD-4550-887F-FEF95C99ED32} = {980B8B35-EBC3-4B23-9538-EA2F13EC49DC}
 		{46BA056C-F4CC-4202-A1D8-A19AD2FEC2F3} = {980B8B35-EBC3-4B23-9538-EA2F13EC49DC}
 		{D310C473-4659-4208-9C43-3B97F1A99120} = {B5C5B91C-5E85-4C02-862C-389A48D22885}
+		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94} = {B0E9C9A5-6F12-486A-8AD1-524F49B4B85F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43321E22-92FA-43A4-A0E8-CDEF4DDE85DD}
