@@ -13,8 +13,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         [TestMethod]
         public async Task CreateNewUser()
         {
-            //Arrange
-            
+            //Arrange            
 
 
             //Act
