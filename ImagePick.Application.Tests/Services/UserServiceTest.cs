@@ -1,13 +1,12 @@
-﻿using ImagePick.Application.Contracts.Services;
+﻿using FluentAssertions;
+using ImagePick.Application.Contracts.Models;
+using ImagePick.Application.Contracts.Services;
 using ImagePick.Application.Services;
 using ImagePick.Application.Unit.Tests.MockRespository;
 using ImagePick.Application.Unit.Tests.Stubs;
 using ImagePick.DataAccess.Contracts.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ImagePick.Application.Unit.Tests.Services
@@ -26,17 +25,20 @@ namespace ImagePick.Application.Unit.Tests.Services
         }
 
         [TestMethod]
-        public async Task CreateNewUser_ok()
+        public async Task AddAsync_CreateNewUser_ok()
         {
-            //Arrange            
-            var expected = UserStub.user_1;
+            //Arrange 
+            var expected = UserApplicationStub.user_1;
 
             //Act
-
-
+            var actual = await _userService.AddAsync(expected);
 
             //Assert
-
+            actual.Should().BeOfType(typeof(UserApplication));
+            actual.Should().NotBeNull();
+            actual.Should().Equals(expected);
+            actual.Id.Should().NotBe(0);
+            actual.FirstName.Should().NotBeNullOrEmpty();
         }
 
 
