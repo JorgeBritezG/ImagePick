@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ImagePick.Application.Contracts\ImagePick.Application.Contracts.csproj" />
+    <ProjectReference Include="..\ImagePick.Application\ImagePick.Application.csproj" />
     <ProjectReference Include="..\ImagePick.DataAccess.Contracts\ImagePick.DataAccess.Contracts.csproj" />
   </ItemGroup>
 
