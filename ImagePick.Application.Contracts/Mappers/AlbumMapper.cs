@@ -8,8 +8,13 @@ namespace ImagePick.Application.Contracts.Mappers
     {
         public static Album Map(AlbumApplication dto )
         {
-
-            dto.User.Albums = null;
+            if(dto.User != null)
+            {
+                if(dto.User.Albums != null )
+                {
+                    dto.User.Albums = null;
+                }
+            }
 
             return new Album()
             {
@@ -27,7 +32,13 @@ namespace ImagePick.Application.Contracts.Mappers
         public static AlbumApplication Map( Album dto )
         {
 
-            dto.User.Albums = null;
+            if ( dto.User != null )
+            {
+                if ( dto.User.Albums != null )
+                {
+                    dto.User.Albums = null;
+                }
+            }
 
             return new AlbumApplication()
             {

@@ -9,6 +9,15 @@ namespace ImagePick.Application.Unit.Tests.Stubs
         
         public static AlbumApplication album_null = null;
 
+        public static AlbumApplication album_AddOrUpdate = new AlbumApplication()
+        {
+            Id = 1,
+            CreatedAt = DateTime.Now,
+            Name = "Me Gusta",
+            UserId = 1,
+            
+        };
+
         public static AlbumApplication album_1 = new AlbumApplication()
         {
             Id = 1,
