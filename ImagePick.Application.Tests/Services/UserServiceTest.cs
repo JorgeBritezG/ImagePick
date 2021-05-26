@@ -7,6 +7,7 @@ using ImagePick.Application.Unit.Tests.Stubs;
 using ImagePick.DataAccess.Contracts.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ImagePick.Application.Unit.Tests.Services
@@ -25,7 +26,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         }
 
         [TestMethod]
-        public async Task AddAsync_CreateNewUser_ok()
+        public async Task AddAsync_CreateNewUser_Ok()
         {
             //Arrange 
             var expected = UserApplicationStub.user_1;
@@ -39,6 +40,94 @@ namespace ImagePick.Application.Unit.Tests.Services
             actual.Should().Equals(expected);
             actual.Id.Should().NotBe(0);
             actual.FirstName.Should().NotBeNullOrEmpty();
+        }
+
+        [TestMethod]
+        public async Task UpdateAsync_UpdateUser_Ok()
+        {
+            //Arrange 
+            var expected = UserApplicationStub.user_1;
+
+            //Act
+            var actual = await _userService.UpdateAsync(expected);
+
+            //Assert
+            actual.Should().BeOfType(typeof(UserApplication));
+            actual.Should().NotBeNull();
+            actual.Should().Equals(expected);
+            actual.Id.Should().NotBe(0);
+            actual.FirstName.Should().NotBeNullOrEmpty();
+        }
+
+        [TestMethod]
+        public async Task DeleteAsync_ById_Ok()
+        {
+            //Arrange 
+            int id = 3;
+
+            //Act
+            var actual = await _userService.DeleteAsync(id);
+
+            //Assert
+            actual.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public async Task DeleteAsync_ById_InvalidId()
+        {
+            //Arrange 
+            int id = 1;
+
+            //Act
+            var actual = await _userService.DeleteAsync(id);
+
+            //Assert
+            actual.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public async Task GetAllAsync_ok()
+        {
+            //Arrange 
+            var expected = UserApplicationStub.users;
+
+            //Act
+            var actual = await _userService.GetAllAsync();
+
+            //Assert
+            actual.Should().AllBeOfType(typeof(UserApplication));
+            actual.Should().NotBeNull();
+            actual.Should().Equals(expected);
+            actual.Should().HaveCountGreaterThan(0);
+        }
+
+        [TestMethod]
+        public async Task GetAsync_ById_ok()
+        {
+            //Arrange 
+            int id = 1;
+            var expected = UserApplicationStub.user_1;
+
+            //Act
+            var actual = await _userService.GetAsync(id);
+
+            //Assert
+            actual.Should().BeOfType(typeof(UserApplication));
+            actual.Should().NotBeNull();
+            actual.Should().Equals(expected);
+        }
+
+        [TestMethod]
+        public async Task GetAsync_ById_InvalidId_ExpectedNulL()
+        {
+            //Arrange 
+            int id = 3;
+
+            //Act
+            var actual = await _userService.GetAsync(id);
+
+            //Assert
+            actual.Should().BeNull();
         }
 
 
