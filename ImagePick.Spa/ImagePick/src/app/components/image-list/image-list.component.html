@@ -1,24 +1,15 @@
 <div class="full-width">
-  <div class="card" style="width: 18rem;">
-    <div class="card-header">
-      <img class="rounded-circle" src="https://images.unsplash.com/profile-1524516487049-ef400fb20120?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=32&w=32" alt="">
-      Troy Spoelma
-    </div>  
-    <img src="https://images.unsplash.com/photo-1621972660295-0ae270b0b38e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjQ2NDN8MHwxfGFsbHwyfHx8fHx8Mnx8MTYyMjA3Mzg0Mg&ixlib=rb-1.2.1&q=80&w=1080" class="card-img-top" alt="...">  
-    <div class="card-body text-center">      
-      <i class="bi bi-heart fs-2 me-1"></i>
-      <i class="bi bi-plus-square fs-2 ms-1"></i>
+  <ng-container *ngFor="let item of images$ | async">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        <img class="rounded-circle" src="{{item.user.profile_image.small}}" alt="">
+        {{ item.user.name }}
+      </div>  
+      <img src="{{item.urls.regular}}" class="card-img-top" alt="{{item.alt_description}}">  
+      <div class="card-body text-center">      
+        <i class="bi bi-heart fs-2 me-1"></i>
+        <i class="bi bi-plus-square fs-2 ms-1"></i>
+      </div>
     </div>
-  </div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-header">
-      <img class="rounded-circle" src="https://images.unsplash.com/profile-1524516487049-ef400fb20120?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=32&w=32" alt="">
-      Troy Spoelma
-    </div>  
-    <img src="https://images.unsplash.com/photo-1621972660295-0ae270b0b38e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjQ2NDN8MHwxfGFsbHwyfHx8fHx8Mnx8MTYyMjA3Mzg0Mg&ixlib=rb-1.2.1&q=80&w=1080" class="card-img-top" alt="...">  
-    <div class="card-body text-center">      
-      <i class="bi bi-heart fs-2 me-1"></i>
-      <i class="bi bi-plus-square fs-2 ms-1"></i>
-    </div>
-  </div>
+  </ng-container>
 </div>
