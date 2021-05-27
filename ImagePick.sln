@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.CrossCutting", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePick.Application.Unit.Tests", "ImagePick.Application.Tests\ImagePick.Application.Unit.Tests.csproj", "{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagePick.DataAccess.Unit.Tests", "ImagePick.DataAccess.Unit.Tests\ImagePick.DataAccess.Unit.Tests.csproj", "{E851F4EC-CCC5-4EBE-B22A-FD3CCBC9AF98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E851F4EC-CCC5-4EBE-B22A-FD3CCBC9AF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E851F4EC-CCC5-4EBE-B22A-FD3CCBC9AF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E851F4EC-CCC5-4EBE-B22A-FD3CCBC9AF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E851F4EC-CCC5-4EBE-B22A-FD3CCBC9AF98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{46BA056C-F4CC-4202-A1D8-A19AD2FEC2F3} = {980B8B35-EBC3-4B23-9538-EA2F13EC49DC}
 		{D310C473-4659-4208-9C43-3B97F1A99120} = {B5C5B91C-5E85-4C02-862C-389A48D22885}
 		{F74739C8-1BA7-4ECF-8716-E7F45CEE5B94} = {B0E9C9A5-6F12-486A-8AD1-524F49B4B85F}
+		{E851F4EC-CCC5-4EBE-B22A-FD3CCBC9AF98} = {980B8B35-EBC3-4B23-9538-EA2F13EC49DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43321E22-92FA-43A4-A0E8-CDEF4DDE85DD}
