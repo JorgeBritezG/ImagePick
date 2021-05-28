@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { SocialAuthService } from 'angularx-social-login';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -18,7 +19,11 @@ export class AuthenticateService {
   private currentUserSubject = new BehaviorSubject<UserToken | null>({} as UserToken);
   public currentUser = this.currentUserSubject.asObservable();
 
-  constructor(private httpClient: HttpClient, private jwtService: JwtService, private router: Router) {
+  constructor(
+    private httpClient: HttpClient, 
+    private jwtService: JwtService,
+    private socialAuth: SocialAuthService, 
+    private router: Router) {
     this.currentUserSubject = new BehaviorSubject<UserToken | null>(this.jwtService.getUser());
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -40,6 +45,7 @@ export class AuthenticateService {
 
   logout() {
     this.purgeAuth();
+    this.socialAuth.signOut();
   }
 
   purgeAuth() {

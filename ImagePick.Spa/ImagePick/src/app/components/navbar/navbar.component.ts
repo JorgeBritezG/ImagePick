@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logged = false;
   model: SocialUser | null | undefined;
   subscription: Subscription = new Subscription;
-  authState$: Observable<SocialUser> | undefined;
   
   constructor(
     private socialAuthService: SocialAuthService,
@@ -22,7 +21,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    this.authState$ = this.socialAuthService.authState;
     this.subscription = this.socialAuthService.authState.subscribe(data => {
       console.log(data);
       if (data) {
