@@ -14,6 +14,7 @@ namespace ImagePick.Application.Contracts.Mappers
                 Email = dto.Email.Trim(),
                 FirstName = dto.FirstName.Trim(),
                 LastName = dto.LastName.Trim(),
+                UserName = dto.UserName,
                 Albums = dto.Albums?.Select(AlbumMapper.Map).ToList(),
 
             };
@@ -28,6 +29,7 @@ namespace ImagePick.Application.Contracts.Mappers
                 Name = $"{dto.FirstName.Trim()} {dto.LastName.Trim()}",
                 FirstName = dto.FirstName.Trim(),
                 LastName = dto.LastName.Trim(),
+                UserName = dto.UserName,
 
             };
         }

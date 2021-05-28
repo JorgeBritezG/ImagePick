@@ -15,7 +15,7 @@ namespace ImagePick.Api.Config
             if (existingUserManager == null)
             {
                 services.AddIdentity<User, IdentityRole>()
-                        .AddEntityFrameworkStores<ImagePickDbContext>()
+                        .AddEntityFrameworkStores<ImagePickIdentityDbContext>()
                         .AddDefaultTokenProviders();
 
             }

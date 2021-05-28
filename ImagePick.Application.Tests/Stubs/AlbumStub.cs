@@ -14,7 +14,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             Id = 1,
             CreatedAt = DateTime.Now,
             Name = "Me Gusta",
-            UserId = 1,
+            UserId = "",
             Images = new List<Image>()
             {
                 new Image() 
@@ -47,7 +47,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             Id = 1,
             CreatedAt = DateTime.Now,
             Name = "Favoritos",
-            UserId = 1,
+            UserId = "",
             Images = new List<Image>()
             {
                 new Image()

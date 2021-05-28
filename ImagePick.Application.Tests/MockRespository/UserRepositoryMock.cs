@@ -22,29 +22,29 @@ namespace ImagePick.Application.Unit.Tests.MockRespository
                 x.AddAsync(It.IsAny<User>()))
                 .ReturnsAsync(UserStub.user_1);
 
-            //DeleteAsync true
-            _userRepository.Setup(x =>
-                x.DeleteAsync(It.Is<int>(p => p.Equals(3))))
-                .ReturnsAsync(true);
+            ////DeleteAsync true
+            //_userRepository.Setup(x =>
+            //    x.DeleteAsync(It.Is<int>(p => p.Equals(3))))
+            //    .ReturnsAsync(true);
 
-            //DeleteAsync false
-            _userRepository.Setup(x =>
-                x.DeleteAsync(It.Is<int>(p => !p.Equals(3))))
-                .ReturnsAsync(false);
+            ////DeleteAsync false
+            //_userRepository.Setup(x =>
+            //    x.DeleteAsync(It.Is<int>(p => !p.Equals(3))))
+            //    .ReturnsAsync(false);
 
-            //GetAllAsync
-            _userRepository.Setup(x =>
-                x.GetAllAsync()).ReturnsAsync(UserStub.users);
+            ////GetAllAsync
+            //_userRepository.Setup(x =>
+            //    x.GetAllAsync()).ReturnsAsync(UserStub.users);
 
-            //GetAsync by id 1
-            _userRepository.Setup(x =>
-                x.GetAsync(It.Is<int>(p => p.Equals(1))))
-                .ReturnsAsync(UserStub.user_1);
+            ////GetAsync by id 1
+            //_userRepository.Setup(x =>
+            //    x.GetAsync(It.Is<int>(p => p.Equals(1))))
+            //    .ReturnsAsync(UserStub.user_1);
 
-            //GetAsync by not id 1
-            _userRepository.Setup(x =>
-                x.GetAsync(It.Is<int>(p => !p.Equals(1))))
-                .ReturnsAsync(UserStub.user_null);
+            ////GetAsync by not id 1
+            //_userRepository.Setup(x =>
+            //    x.GetAsync(It.Is<int>(p => !p.Equals(1))))
+            //    .ReturnsAsync(UserStub.user_null);
 
             //UpdateAsync
             _userRepository.Setup(x =>

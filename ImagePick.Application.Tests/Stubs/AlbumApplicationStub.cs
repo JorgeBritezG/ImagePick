@@ -14,7 +14,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             Id = 1,
             CreatedAt = DateTime.Now,
             Name = "Me Gusta",
-            UserId = 1,
+            UserId = "",
             
         };
 
@@ -23,7 +23,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             Id = 1,
             CreatedAt = DateTime.Now,
             Name = "Me Gusta",
-            UserId = 1,
+            UserId = "",
             Images = new List<ImageApplication>()
             {
                 new ImageApplication() 
@@ -56,7 +56,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             Id = 1,
             CreatedAt = DateTime.Now,
             Name = "Favoritos",
-            UserId = 1,
+            UserId = "",
             Images = new List<ImageApplication>()
             {
                 new ImageApplication()

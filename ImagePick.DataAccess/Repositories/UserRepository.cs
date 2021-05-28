@@ -124,7 +124,7 @@ namespace ImagePick.DataAccess.Repositories
         {
             Payload payload = await ValidateAsync(request.IdToken, new ValidationSettings
             {
-                Audience = new[] { "Authentication:Google:ClientId" }
+                Audience = new[] { "442649138447-0t3eao9bnoijb3rc2rueieb4efiednm5.apps.googleusercontent.com" }
             });
 
             return await GetOrCreateExternalLoginUser(GoogleUserRequest.PROVIDER, payload.Subject, payload.Email, payload.GivenName, payload.FamilyName);

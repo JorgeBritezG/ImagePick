@@ -11,7 +11,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
 
         public static UserApplication user_1 = new UserApplication()
         {
-            Id = 1,
+            Id = "",
             Email = "email@prueba.com",
             FirstName = "Jorge",
             LastName = "Britez",
@@ -19,7 +19,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
 
         public static UserApplication user_2 = new UserApplication()
         {
-            Id = 2,
+            Id = "",
             Email = "email2@prueba.com",
             FirstName = "Jorge2",
             LastName = "Britez2",

@@ -26,8 +26,12 @@ namespace ImagePick.Api
             services.AddControllers()
                     .AddNewtonsoftJson();
 
+            services.AddCors();
+
             services.AddTransient<IImagePickDbContext, ImagePickDbContext>();
             services.AddDbContext<ImagePickDbContext>(options =>
+                options.UseSqlite("Data Source=ImagePickDb.db"));
+            services.AddDbContext<ImagePickIdentityDbContext>(options =>
                 options.UseSqlite("Data Source=ImagePickDb.db"));
 
             IdentityConfig.CreateIdentityIfNotCreated(services);
@@ -49,6 +53,8 @@ namespace ImagePick.Api
             }
 
             app.UseRouting();
+            
+            app.UseCors(it => it.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseSwagger();
 
