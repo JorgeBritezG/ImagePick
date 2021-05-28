@@ -29,7 +29,7 @@ namespace ImagePick.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("googleauthenticate")]
         public async Task<IActionResult> GoogleAuthenticate( [FromBody] GoogleUserRequest request )
         {
             if ( !ModelState.IsValid )
