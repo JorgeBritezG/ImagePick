@@ -17,6 +17,13 @@ const routes: Routes = [
     },
     loadChildren: () => import('./login-page/login-page.module').then(m => m.LoginPageModule)
   },
+  {
+    path: 'profile',
+    data: {
+      title: 'Profile'      
+    },
+    loadChildren: () => import('./profile-page/profile-page.module').then(m => m.ProfilePageModule)
+  },
   { path: '**', redirectTo: '' }
   
 ];

@@ -35,7 +35,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: false,
+        autoLogin: true,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
