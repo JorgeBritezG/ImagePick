@@ -1,20 +1,28 @@
 ﻿using ImagePick.DataAccess.Contracts;
 using ImagePick.DataAccess.Contracts.Entities;
+using ImagePick.DataAccess.Contracts.Models;
 using ImagePick.DataAccess.Contracts.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static Google.Apis.Auth.GoogleJsonWebSignature;
 
 namespace ImagePick.DataAccess.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private readonly IImagePickDbContext _imagePickDbContext;
+        private readonly UserManager<User> _userManager;
 
-        public UserRepository( IImagePickDbContext imagePickDbContext )
+        public UserRepository( 
+            IImagePickDbContext imagePickDbContext,  
+            UserManager<User> userManager
+            )
         {
             _imagePickDbContext = imagePickDbContext;
+            _userManager = userManager;
         }
 
         public async Task<User> AddAsync( User entity )
@@ -35,7 +43,7 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<bool> DeleteAsync( int id )
+        public async Task<bool> DeleteAsync( string id )
         {
             try
             {
@@ -75,7 +83,7 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<User> GetAsync( int id )
+        public async Task<User> GetAsync( string id )
         {
             try
             {
@@ -109,6 +117,43 @@ namespace ImagePick.DataAccess.Repositories
                 throw;
             }
 
+
+        }
+
+        public async Task<User> AuthenticateGoogleUserAsync( GoogleUserRequest request )
+        {
+            Payload payload = await ValidateAsync(request.IdToken, new ValidationSettings
+            {
+                Audience = new[] { "Authentication:Google:ClientId" }
+            });
+
+            return await GetOrCreateExternalLoginUser(GoogleUserRequest.PROVIDER, payload.Subject, payload.Email, payload.GivenName, payload.FamilyName);
+        }
+
+        private async Task<User> GetOrCreateExternalLoginUser( string provider, string key, string email, string firstName, string lastName )
+        {
+            var user = await _userManager.FindByLoginAsync(provider, key);
+            if ( user != null )
+                return user;
+            user = await _userManager.FindByEmailAsync(email);
+            if ( user == null )
+            {
+                user = new User
+                {
+                    Email = email,
+                    UserName = email,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Id = key,
+                };
+                await _userManager.CreateAsync(user);
+            }
+
+            var info = new UserLoginInfo(provider, key, provider.ToUpperInvariant());
+            var result = await _userManager.AddLoginAsync(user, info);
+            if ( result.Succeeded )
+                return user;
+            return null;
 
         }
     }

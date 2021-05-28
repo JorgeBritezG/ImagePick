@@ -11,9 +11,6 @@ namespace ImagePick.DataAccess.EntityConfig
             modelBuilder.HasKey(x => x.Id);
             modelBuilder.Property(x => x.Id).IsRequired();
 
-            modelBuilder.Property(x => x.Email).IsRequired();
-            modelBuilder.Property(x => x.Email).HasMaxLength(256);
-
             modelBuilder.Property(x => x.FirstName).IsRequired();
             modelBuilder.Property(x => x.FirstName).HasMaxLength(100);
 

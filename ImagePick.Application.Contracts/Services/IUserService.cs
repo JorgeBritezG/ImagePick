@@ -1,5 +1,5 @@
 ﻿using ImagePick.Application.Contracts.Models;
-using ImagePick.Application.Contracts.Models.Auth;
+using ImagePick.DataAccess.Contracts.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,9 +9,9 @@ namespace ImagePick.Application.Contracts.Services
     {
         Task<IEnumerable<UserApplication>> GetAllAsync();
 
-        Task<UserApplication> GetAsync( int id );
+        Task<UserApplication> GetAsync( string id );
 
-        Task<bool> DeleteAsync( int id );
+        Task<bool> DeleteAsync( string id );
 
         Task<UserApplication> UpdateAsync( UserApplication entity );
 

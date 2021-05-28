@@ -1,18 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ImagePick.Application.Contracts.Models
 {
-    public class UserApplication
+    public class UserApplication : IdentityUser
     {
-
-        public int Id { get; set; }
-
-        [Required]
-        [MaxLength(256)]
-        [EmailAddress]
-        public string Email { get; set; }
-
+                
         public string Name { get; set; }
 
         [Required]

@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace ImagePick.DataAccess.Contracts.Entities
 {
-    public class User
+    public class User : IdentityUser
     {
-
-        public int Id { get; set; }
-
-        public string Email { get; set; }
 
         public string FirstName { get; set; }
 
