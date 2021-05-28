@@ -1,4 +1,5 @@
 ﻿using ImagePick.Application.Contracts.Models;
+using ImagePick.Application.Contracts.Models.Auth;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
