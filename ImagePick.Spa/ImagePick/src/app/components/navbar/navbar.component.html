@@ -4,6 +4,13 @@
       <i class="bi bi-camera-fill"></i>
       ImagePick
     </a>
-    <a class="btn btn-primary" [routerLink]="['/login']">Login</a>
+    <div *ngIf="!logged">
+      <a class="btn btn-primary" [routerLink]="['/login']">Login</a>
+    </div>
+    <div *ngIf="logged">
+      <a href="">
+        <img class="rounded-circle" src="{{ model?.photoUrl }}" alt="Profile Photo" width="36" height="36">
+      </a>
+    </div>
   </div>
 </nav>
