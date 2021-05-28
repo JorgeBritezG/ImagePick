@@ -16,5 +16,7 @@ namespace ImagePick.Application.Contracts.Services
 
         Task<UserApplication> AddAsync( UserApplication entity );
 
+        Task<UserApplication> AuthenticateGoogleUserAsync( GoogleUserRequest request );
+
     }
 }
