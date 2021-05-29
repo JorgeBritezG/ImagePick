@@ -1,5 +1,6 @@
 ﻿using ImagePick.Application.Contracts.Models;
 using ImagePick.Application.Contracts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace ImagePick.Api.Controllers
     [Produces("application/json")]
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class AlbumsController : ControllerBase
     {
         private readonly IAlbumService _albumService;
