@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageListComponent } from './image-list.component';
+import { LikeButtonModule } from '../like-button/like-button.module';
+import { AddAlbumButtonModule } from '../add-album-button/add-album-button.module';
 
 
 
@@ -9,7 +11,9 @@ import { ImageListComponent } from './image-list.component';
     ImageListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LikeButtonModule,
+    AddAlbumButtonModule,
   ],
   exports: [
     ImageListComponent

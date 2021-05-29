@@ -6,9 +6,9 @@
         {{ item.user.name }}
       </div>  
       <img src="{{item.urls.regular}}" class="card-img-top" alt="{{item.alt_description}}">  
-      <div class="card-body text-center">      
-        <i class="bi bi-heart fs-2 me-1"></i>
-        <i class="bi bi-plus-square fs-2 ms-1"></i>
+      <div class="card-body text-center d-flex justify-content-center">      
+        <app-like-button></app-like-button>
+        <app-add-album-button></app-add-album-button>
       </div>
     </div>
   </ng-container>

@@ -5,3 +5,7 @@
 .card {
   width: 100% !important;
 }
+
+.dropdown-toggle::after {
+  display: none;
+}
