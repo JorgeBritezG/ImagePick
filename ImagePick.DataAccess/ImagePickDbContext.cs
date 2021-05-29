@@ -10,7 +10,7 @@ using System.Text;
 
 namespace ImagePick.DataAccess
 {
-    public class ImagePickDbContext : DbContext, IImagePickDbContext
+    public class ImagePickDbContext : IdentityDbContext<User>, IImagePickDbContext
     {
 
         public ImagePickDbContext( DbContextOptions<ImagePickDbContext> options ) : base(options)
@@ -22,19 +22,21 @@ namespace ImagePick.DataAccess
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<User> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityRole>(entity => { entity.ToTable(name: "Roles"); });
-            modelBuilder.Entity<IdentityUserRole<string>>(entity => { entity.ToTable("UserRoles").HasNoKey(); });
-            modelBuilder.Entity<IdentityUserClaim<string>>(entity => { entity.ToTable("UserClaims").HasNoKey(); });
-            modelBuilder.Entity<IdentityUserLogin<string>>(entity => { entity.ToTable("UserLogins").HasNoKey(); });
-            modelBuilder.Entity<IdentityUserToken<string>>(entity => { entity.ToTable("UserTokens").HasNoKey(); });
-            modelBuilder.Entity<IdentityRoleClaim<string>>(entity => { entity.ToTable("RoleClaims").HasNoKey(); });
 
-            AlbumEntityConfig.SetEntityBuilder(modelBuilder.Entity<Album>());
+            modelBuilder.Entity<User>(entity => { entity.ToTable(name: "Users"); });
+            modelBuilder.Entity<IdentityRole>(entity => { entity.ToTable(name: "Roles"); });
+            modelBuilder.Entity<IdentityUserRole<string>>(entity => { entity.ToTable("UserRoles"); });
+            modelBuilder.Entity<IdentityUserClaim<string>>(entity => { entity.ToTable("UserClaims"); });
+            modelBuilder.Entity<IdentityUserLogin<string>>(entity => { entity.ToTable("UserLogins"); });
+            modelBuilder.Entity<IdentityUserToken<string>>(entity => { entity.ToTable("UserTokens"); });
+            modelBuilder.Entity<IdentityRoleClaim<string>>(entity => { entity.ToTable("RoleClaims"); });
+
             UserEntityConfig.SetEntityBuilder(modelBuilder.Entity<User>());
+            AlbumEntityConfig.SetEntityBuilder(modelBuilder.Entity<Album>());
             ImageEntityConfig.SetEntityBuilder(modelBuilder.Entity<Image>());
 
 

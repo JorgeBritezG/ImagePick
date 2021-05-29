@@ -29,9 +29,9 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                await _imagePickDbContext.Users.AddAsync(entity);
+               // await _imagePickDbContext.Users.AddAsync(entity);
 
-                await _imagePickDbContext.SaveChangesAsync();
+               // await _imagePickDbContext.SaveChangesAsync();
 
                 return entity;
 
@@ -47,12 +47,12 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                var entity = await _imagePickDbContext.Users
-                    .FirstOrDefaultAsync(x => x.Id == id);
+                //var entity = await _imagePickDbContext.Users
+                //    .FirstOrDefaultAsync(x => x.Id == id);
 
-                _imagePickDbContext.Users.Remove(entity);
+                //_imagePickDbContext.Users.Remove(entity);
 
-                await _imagePickDbContext.SaveChangesAsync();
+               // await _imagePickDbContext.SaveChangesAsync();
 
                 return true;
 
@@ -70,11 +70,11 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                var result = await _imagePickDbContext.Users
-                    .ToListAsync();
+                //var result = await _imagePickDbContext.Users
+                //    .ToListAsync();
 
-                return result;
-
+                // return result;
+                throw new NotImplementedException();
             }
             catch ( Exception )
             {
@@ -87,10 +87,10 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                var entity = await _imagePickDbContext.Users
-                    .FirstOrDefaultAsync(x => x.Id == id);
+                //var entity = await _imagePickDbContext.Users
+                //    .FirstOrDefaultAsync(x => x.Id == id);
 
-                return entity;
+                throw new NotImplementedException();
 
             }
             catch ( Exception )
@@ -104,9 +104,9 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                _imagePickDbContext.Users.Update(entity);
+                //_imagePickDbContext.Users.Update(entity);
 
-                await _imagePickDbContext.SaveChangesAsync();
+                //await _imagePickDbContext.SaveChangesAsync();
 
                 return entity;
 

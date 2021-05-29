@@ -3,14 +3,16 @@ using System;
 using ImagePick.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ImagePick.DataAccess.Migrations
 {
     [DbContext(typeof(ImagePickDbContext))]
-    partial class ImagePickDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210529212939_ChangeDbContextToIdentityDbContext")]
+    partial class ChangeDbContextToIdentityDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
