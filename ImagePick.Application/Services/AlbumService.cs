@@ -48,6 +48,18 @@ namespace ImagePick.Application.Services
             return AlbumMapper.Map(entity);
         }
 
+        public async Task<IEnumerable<AlbumApplication>> GetByUserIdAsync( string userId )
+        {
+            var entity = await _albumRepository.GetByUserIdAsync(userId);
+
+            if ( entity == null )
+            {
+                return null;
+            }
+
+            return entity.Select(AlbumMapper.Map);
+        }
+
         public async Task<AlbumApplication> UpdateAsync( AlbumApplication entity )
         {
             var result = await _albumRepository.UpdateAsync(AlbumMapper.Map(entity));

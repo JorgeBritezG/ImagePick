@@ -10,6 +10,8 @@ namespace ImagePick.DataAccess.Contracts.Repositories
 
         Task<Album> GetAsync( int id );
 
+        Task<IEnumerable<Album>> GetByUserIdAsync( string userId );
+
         Task<bool> DeleteAsync( int id );
 
         Task<Album> UpdateAsync( Album entity );

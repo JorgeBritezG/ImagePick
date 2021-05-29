@@ -31,8 +31,6 @@ namespace ImagePick.Api
             services.AddTransient<IImagePickDbContext, ImagePickDbContext>();
             services.AddDbContext<ImagePickDbContext>(options =>
                 options.UseSqlite("Data Source=ImagePickDb.db"));
-            services.AddDbContext<ImagePickIdentityDbContext>(options =>
-                options.UseSqlite("Data Source=ImagePickDb.db"));
 
             IdentityConfig.CreateIdentityIfNotCreated(services);
 

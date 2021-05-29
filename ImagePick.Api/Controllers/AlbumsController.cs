@@ -16,10 +16,16 @@ namespace ImagePick.Api.Controllers
     public class AlbumsController : ControllerBase
     {
         private readonly IAlbumService _albumService;
+        private readonly IUserService _userService;
 
-        public AlbumsController( IAlbumService albumService )
+        public AlbumsController( 
+            IAlbumService albumService,
+            IUserService userService
+
+            )
         {
             _albumService = albumService;
+            _userService = userService;
         }
 
         /// <summary>
@@ -64,6 +70,53 @@ namespace ImagePick.Api.Controllers
             try
             {
                 var result = await _albumService.GetAsync(id);
+
+                if ( result == null )
+                {
+                    return NotFound();
+                }
+
+                return Ok(result);
+
+            }
+            catch ( Exception ex )
+            {
+
+                return Conflict(ex.Message);
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Albums by UserId.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>List of Albums by userId</returns>
+        /// <response code="200">Returns the albums by userId</response>
+        /// <response code="404">Album not found</response>
+        /// <response code="409">error in the server</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [HttpGet("by-user/{id}")]
+        public async Task<ActionResult<IEnumerable<AlbumApplication>>> GetByUserId( string userId )
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return BadRequest("userId not null");
+                }
+
+                var user = await _userService.GetAsync(userId);
+
+                if (user == null)
+                {
+                    return NotFound("User not exist");
+                }
+
+                var result = await _albumService.GetByUserIdAsync(userId);
 
                 if ( result == null )
                 {

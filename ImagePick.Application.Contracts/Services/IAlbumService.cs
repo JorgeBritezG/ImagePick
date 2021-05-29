@@ -8,6 +8,8 @@ namespace ImagePick.Application.Contracts.Services
     {
         Task<IEnumerable<AlbumApplication>> GetAllAsync();
 
+        Task<IEnumerable<AlbumApplication>> GetByUserIdAsync( string userId);
+
         Task<AlbumApplication> GetAsync( int id );
 
         Task<bool> DeleteAsync( int id );

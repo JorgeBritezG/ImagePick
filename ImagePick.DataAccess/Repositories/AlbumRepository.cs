@@ -4,6 +4,7 @@ using ImagePick.DataAccess.Contracts.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ImagePick.DataAccess.Repositories
@@ -81,6 +82,24 @@ namespace ImagePick.DataAccess.Repositories
             {
                 var entity = await _imagePickDbContext.Albums
                     .FirstOrDefaultAsync(x => x.Id == id);
+
+                return entity;
+
+            }
+            catch ( Exception )
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Album>> GetByUserIdAsync( string userId )
+        {
+            try
+            {
+                var entity = await _imagePickDbContext.Albums
+                    .Where(x => x.UserId == userId)
+                    .ToListAsync();
 
                 return entity;
 
