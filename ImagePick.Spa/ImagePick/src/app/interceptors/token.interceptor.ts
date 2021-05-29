@@ -15,12 +15,15 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.jwtService.getToken();
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          'Autorization': `Bearer ${token}`
-        }
-      });
+    const imageRequest = request.headers.get('Authorization');
+    if (!imageRequest) {
+      if (token) {
+        request = request.clone({
+          setHeaders: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+      }
     }
     return next.handle(request);
   }

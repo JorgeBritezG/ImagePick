@@ -21,7 +21,8 @@ namespace ImagePick.DataAccess.EntityConfig
 
             modelBuilder.HasMany(x => x.Images)
                         .WithOne(x => x.Album)
-                        .HasForeignKey(x => x.AlbumId);
+                        .HasForeignKey(x => x.AlbumId)
+                        .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

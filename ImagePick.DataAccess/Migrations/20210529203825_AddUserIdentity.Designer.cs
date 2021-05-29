@@ -3,14 +3,16 @@ using System;
 using ImagePick.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ImagePick.DataAccess.Migrations.Identity
+namespace ImagePick.DataAccess.Migrations
 {
-    [DbContext(typeof(ImagePickIdentityDbContext))]
-    partial class ImagePickIdentityDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ImagePickDbContext))]
+    [Migration("20210529203825_AddUserIdentity")]
+    partial class AddUserIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +28,8 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
@@ -35,7 +39,7 @@ namespace ImagePick.DataAccess.Migrations.Identity
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Album");
+                    b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("ImagePick.DataAccess.Contracts.Entities.Image", b =>
@@ -60,6 +64,8 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserProfileImageSmall")
@@ -69,7 +75,7 @@ namespace ImagePick.DataAccess.Migrations.Identity
 
                     b.HasIndex("AlbumId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("ImagePick.DataAccess.Contracts.Entities.User", b =>
@@ -81,11 +87,9 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
@@ -107,11 +111,9 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
@@ -130,19 +132,11 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -151,70 +145,51 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("RoleId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -222,55 +197,44 @@ namespace ImagePick.DataAccess.Migrations.Identity
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<string>("ProviderKey")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("UserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("RoleId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("ImagePick.DataAccess.Contracts.Entities.Album", b =>
@@ -292,57 +256,6 @@ namespace ImagePick.DataAccess.Migrations.Identity
                         .IsRequired();
 
                     b.Navigation("Album");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("ImagePick.DataAccess.Contracts.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("ImagePick.DataAccess.Contracts.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ImagePick.DataAccess.Contracts.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("ImagePick.DataAccess.Contracts.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ImagePick.DataAccess.Contracts.Entities.Album", b =>

@@ -1,4 +1,5 @@
 ﻿using ImagePick.DataAccess.Contracts.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ImagePick.DataAccess.EntityConfig
@@ -19,7 +20,8 @@ namespace ImagePick.DataAccess.EntityConfig
 
             modelBuilder.HasMany(x => x.Albums)
                         .WithOne(x => x.User)
-                        .HasForeignKey(x => x.UserId);
+                        .HasForeignKey(x => x.UserId)
+                        .OnDelete(DeleteBehavior.Cascade);
 
         }
     }
