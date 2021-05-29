@@ -12,6 +12,7 @@ import { GetImagesService } from './providers/get-images.service';
 import { JwtService } from './providers/jwt.service';
 import { AuthenticateService } from './providers/authenticate.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ApiService } from './providers/api.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     GetImagesService,
     JwtService,
     AuthenticateService,
+    ApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
