@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Album } from 'src/app/models/album';
 import { UserToken } from 'src/app/models/user-token';
 import { ApiService } from 'src/app/providers/api.service';
-import { AuthenticateService } from 'src/app/providers/authenticate.service';
 
 @Component({
   selector: 'app-add-album-button',
@@ -12,24 +10,19 @@ import { AuthenticateService } from 'src/app/providers/authenticate.service';
 })
 export class AddAlbumButtonComponent implements OnInit {
   @Input() albums: Album[] | null = [];
+  @Input() user: UserToken | null | undefined;
 
   private controller = 'Albums'
   album: Album | undefined;
-  user: UserToken | undefined;
 
 
   constructor(
     private apiService: ApiService,
-    private authService: AuthenticateService,
   ) {
    }
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe(
-      user => this.user = user ?? undefined,
-      error => console.error(error)      
-    )
-    
+        
   }
 
   addAlbum(name: string) {

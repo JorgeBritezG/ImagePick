@@ -9,7 +9,8 @@
       <div class="card-body text-center d-flex justify-content-center">      
         <app-like-button></app-like-button>
         <app-add-album-button
-         [albums]="album$ | async">
+         [albums]="album$ | async"
+         [user]="user">
       </app-add-album-button>
       </div>
     </div>

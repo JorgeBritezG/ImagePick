@@ -87,10 +87,10 @@ namespace ImagePick.DataAccess.Repositories
         {
             try
             {
-                //var entity = await _imagePickDbContext.Users
-                //    .FirstOrDefaultAsync(x => x.Id == id);
+                var entity = await _imagePickDbContext.Users
+                    .FirstOrDefaultAsync(x => x.Id == id);
 
-                throw new NotImplementedException();
+                return entity;
 
             }
             catch ( Exception )

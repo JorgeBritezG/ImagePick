@@ -99,7 +99,7 @@ namespace ImagePick.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        [HttpGet("by-user/{id}")]
+        [HttpGet("by-user/{userId}")]
         public async Task<ActionResult<IEnumerable<AlbumApplication>>> GetByUserId( string userId )
         {
             try
