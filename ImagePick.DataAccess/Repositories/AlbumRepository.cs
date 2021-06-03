@@ -98,7 +98,8 @@ namespace ImagePick.DataAccess.Repositories
             try
             {
                 var entity = await _imagePickDbContext.Albums
-                    .Where(x => x.UserId == userId)
+                    .Include(x => x.Images)
+                    .Where(x => x.UserId == userId)                    
                     .ToListAsync();
 
                 return entity;

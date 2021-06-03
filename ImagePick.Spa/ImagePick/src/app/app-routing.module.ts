@@ -24,6 +24,13 @@ const routes: Routes = [
     },
     loadChildren: () => import('./profile-page/profile-page.module').then(m => m.ProfilePageModule)
   },
+  {
+    path: 'album',
+    data: {
+      title: 'Album'      
+    },
+    loadChildren: () => import('./album-page/album-page.module').then(m => m.AlbumPageModule)
+  },
   { path: '**', redirectTo: '' }
   
 ];

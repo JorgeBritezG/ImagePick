@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Album } from 'src/app/models/album';
+import { Image } from 'src/app/models/image';
 import { UserToken } from 'src/app/models/user-token';
 import { ApiService } from 'src/app/providers/api.service';
 
@@ -11,7 +12,7 @@ import { ApiService } from 'src/app/providers/api.service';
 export class AddAlbumButtonComponent implements OnInit {
   @Input() albums: Album[] | null = [];
   @Input() user: UserToken | null | undefined;
-  @Input() imageId: string | undefined;
+  @Input() image: any | undefined;
 
   private controller = 'Albums'
   album: Album | undefined;
@@ -28,19 +29,52 @@ export class AddAlbumButtonComponent implements OnInit {
 
   addAlbum(name: string) {
 
-    console.log('albumName',name, 'id', this.imageId)
+    //console.log('albumName',name, 'id', this.imageId)
 
-    // this.album = {
-    //   createdAt: new Date(),
-    //   name,
-    //   userId: this.user?.userId || undefined,
-    // }
+    this.album = {
+      createdAt: new Date(),
+      name,
+      userId: this.user?.userId || undefined,
+    }
     
-    // this.apiService.create(this.album, this.controller).subscribe(x => {
-    //   console.log(x);
+    this.apiService.create(this.album, this.controller).subscribe((album: Album) => {
 
-    // })
+      console.log('album', album);
 
+      const image: Image = {
+        id: this.image.id,
+        regularUrl: this.image.urls.regular,
+        smallUrl: this.image.urls.small,
+        thumbUrl: this.image.urls.thumb,
+        userName: this.image.user.name,
+        userProfileImageSmall: this.image.user.profile_image.small,
+        userHtmlLink: this.image.user.links.html,
+        albumId: album.id,
+      }
+
+      this.apiService.create( image, 'Images').subscribe(y => {
+        console.log('image', y);
+      })
+
+    })
+  }
+
+  addImageToAlbum(album: Album) {
+
+    const image: Image = {
+      id: this.image.id,
+      regularUrl: this.image.urls.regular,
+      smallUrl: this.image.urls.small,
+      thumbUrl: this.image.urls.thumb,
+      userName: this.image.user.name,
+      userProfileImageSmall: this.image.user.profile_image.small,
+      userHtmlLink: this.image.user.links.html,
+      albumId: album.id,
+    }
+
+    this.apiService.create(image, 'Images').subscribe(x => {
+      console.log(x);
+    })
   }
 
 }
