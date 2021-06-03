@@ -1,1 +1,4 @@
-<a><i class="bi bi-heart fs-2 me-1"></i></a>
+<a (click)="addLike()">
+  <i *ngIf="liked" class="bi bi-heart-fill fs-2 me-1"></i>
+  <i *ngIf="!liked" class="bi bi-heart fs-2 me-1"></i>
+</a>

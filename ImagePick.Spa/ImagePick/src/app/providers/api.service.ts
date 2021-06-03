@@ -18,8 +18,8 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/${controller}`);
   }
 
-  getById(controller: string, id: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${controller}/${id}`);
+  getById(controller: string, id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${controller}/${id}`);
   }
 
   create(model: any, controller: string): Observable<any> {
@@ -30,8 +30,8 @@ export class ApiService {
     return this.http.put<any>(`${this.apiUrl}/${controller}`, model);
   }
 
-  delete(controller: string, id: string): Observable<any[]> {
-    return this.http.delete<any[]>(`${this.apiUrl}/${controller}/${id}`);
+  delete(controller: string, id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${controller}/${id}`);
   }
 
 }

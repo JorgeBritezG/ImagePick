@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AlbumPageRoutingModule } from './album-page-routing.module';
 import { AlbumPageComponent } from './album-page.component';
+import { NavbarModule } from '../components/navbar/navbar.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AlbumPageComponent } from './album-page.component';
   ],
   imports: [
     CommonModule,
-    AlbumPageRoutingModule
+    AlbumPageRoutingModule,
+    NavbarModule,
   ]
 })
 export class AlbumPageModule { }

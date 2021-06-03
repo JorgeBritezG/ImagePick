@@ -49,6 +49,31 @@ namespace ImagePick.Api.Controllers
         }
 
         /// <summary>
+        /// Get All Images
+        /// </summary>
+        /// <returns>List of Images</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [HttpGet("album/{albumId}")]
+        public async Task<ActionResult<IEnumerable<ImageApplication>>> GetByAlbumId(int albumId)
+        {
+            try
+            {
+                var result = await _imageService.GetByAlbumIdAsync(albumId);
+
+                return Ok(result);
+
+            }
+            catch ( Exception ex )
+            {
+
+                return Conflict(ex.Message);
+
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Get Image by Id.
         /// </summary>
         /// <param name="id">Image ID</param>
@@ -72,6 +97,42 @@ namespace ImagePick.Api.Controllers
                 }
 
                 return Ok(result);
+
+            }
+            catch ( Exception ex )
+            {
+
+                return Conflict(ex.Message);
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Image by Id.
+        /// </summary>
+        /// <param name="id">Image ID</param>
+        /// <returns>one Image by id</returns>
+        /// <response code="200">Returns the Image by id</response>
+        /// <response code="404">Image not found</response>
+        /// <response code="409">error in the server</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [HttpGet("liked/{imageId}/{albumId}")]
+        public async Task<ActionResult<bool>> GetLikedByImageId( string imageId, int albumId )
+        {
+            try
+            {
+                
+                var result = await _imageService.GetAsync(imageId, albumId);
+
+                if ( result == null )
+                {
+                    return Ok(false);
+                }
+
+                return Ok(true);
 
             }
             catch ( Exception ex )
