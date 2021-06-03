@@ -24,12 +24,12 @@ namespace ImagePick.Application.Unit.Tests.MockRespository
 
             //DeleteAsync true
             _imageRepository.Setup(x =>
-                x.DeleteAsync(It.Is<int>(p => p.Equals(3))))
+                x.DeleteAsync(It.Is<string>(p => p.Equals(""))))
                 .ReturnsAsync(true);
 
             //DeleteAsync false
             _imageRepository.Setup(x =>
-                x.DeleteAsync(It.Is<int>(p => !p.Equals(3))))
+                x.DeleteAsync(It.Is<string>(p => !p.Equals(""))))
                 .ReturnsAsync(false);
 
             //GetAllAsync
@@ -38,12 +38,12 @@ namespace ImagePick.Application.Unit.Tests.MockRespository
 
             //GetAsync by id 1
             _imageRepository.Setup(x =>
-                x.GetAsync(It.Is<int>(p => p.Equals(1))))
+                x.GetAsync(It.Is<string>(p => p.Equals(""))))
                 .ReturnsAsync(ImageStub.image_1);
 
             //GetAsync by not id 1
             _imageRepository.Setup(x =>
-                x.GetAsync(It.Is<int>(p => !p.Equals(1))))
+                x.GetAsync(It.Is<string>(p => !p.Equals(""))))
                 .ReturnsAsync(ImageStub.image_null);
 
             //UpdateAsync

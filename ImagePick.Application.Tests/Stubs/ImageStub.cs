@@ -10,7 +10,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
 
         public static Image image_1 = new Image()
         {
-            Id = 1,
+            Id = "",
             AlbumId = 1,
             RegularUrl = "RegularUrl",
             SmallUrl = "SmallUrl",
@@ -23,7 +23,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
 
         public static Image image_2 = new Image()
         {
-            Id = 2,
+            Id = "",
             AlbumId = 1,
             RegularUrl = "RegularUrl2",
             SmallUrl = "SmallUrl2",

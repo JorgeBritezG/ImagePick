@@ -35,7 +35,7 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<bool> DeleteAsync( int id )
+        public async Task<bool> DeleteAsync( string id )
         {
             try
             {
@@ -75,7 +75,7 @@ namespace ImagePick.DataAccess.Repositories
             }
         }
 
-        public async Task<Image> GetAsync( int id )
+        public async Task<Image> GetAsync( string id )
         {
             try
             {

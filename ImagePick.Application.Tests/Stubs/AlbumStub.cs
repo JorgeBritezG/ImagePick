@@ -19,7 +19,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             {
                 new Image() 
                 {
-                    Id = 1,
+                    Id = "",
                     AlbumId = 1,
                     RegularUrl = "RegularUrl",
                     SmallUrl = "SmallUrl",
@@ -30,7 +30,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
                 },
                 new Image()
                 {
-                    Id = 2,
+                    Id = "",
                     AlbumId = 1,
                     RegularUrl = "RegularUrl2",
                     SmallUrl = "SmallUrl2",
@@ -52,7 +52,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
             {
                 new Image()
                 {
-                    Id = 3,
+                    Id = "",
                     AlbumId = 2,
                     RegularUrl = "RegularUrl3",
                     SmallUrl = "SmallUrl3",
@@ -63,7 +63,7 @@ namespace ImagePick.Application.Unit.Tests.Stubs
                 },
                 new Image()
                 {
-                    Id = 4,
+                    Id = "",
                     AlbumId = 2,
                     RegularUrl = "RegularUrl4",
                     SmallUrl = "SmallUrl4",

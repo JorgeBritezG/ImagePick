@@ -60,7 +60,7 @@ namespace ImagePick.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<ImageApplication>> Get( int id )
+        public async Task<ActionResult<ImageApplication>> Get( string id )
         {
             try
             {
@@ -165,7 +165,7 @@ namespace ImagePick.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete( int id )
+        public async Task<ActionResult<bool>> Delete( string id )
         {
             try
             {

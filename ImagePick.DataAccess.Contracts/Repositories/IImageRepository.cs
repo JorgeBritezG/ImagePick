@@ -8,9 +8,9 @@ namespace ImagePick.DataAccess.Contracts.Repositories
     {
         Task<IEnumerable<Image>> GetAllAsync();
 
-        Task<Image> GetAsync( int id );
+        Task<Image> GetAsync( string id );
 
-        Task<bool> DeleteAsync( int id );
+        Task<bool> DeleteAsync( string id );
 
         Task<Image> UpdateAsync( Image entity );
 

@@ -4,7 +4,7 @@ namespace ImagePick.Application.Contracts.Models
 {
     public class ImageApplication
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string RegularUrl { get; set; }
 

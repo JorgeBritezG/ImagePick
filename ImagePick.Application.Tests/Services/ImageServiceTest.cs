@@ -37,7 +37,6 @@ namespace ImagePick.Application.Unit.Tests.Services
             actual.Should().BeOfType(typeof(ImageApplication));
             actual.Should().NotBeNull();
             actual.Should().Equals(expected);
-            actual.Id.Should().NotBe(0);
             actual.UserName.Should().NotBeNullOrEmpty();
         }
 
@@ -54,7 +53,6 @@ namespace ImagePick.Application.Unit.Tests.Services
             actual.Should().BeOfType(typeof(ImageApplication));
             actual.Should().NotBeNull();
             actual.Should().Equals(expected);
-            actual.Id.Should().NotBe(0);
             actual.UserName.Should().NotBeNullOrEmpty();
         }
 
@@ -62,7 +60,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task DeleteAsync_ById_Ok()
         {
             //Arrange 
-            int id = 3;
+            string id = "";
 
             //Act
             var actual = await _imageService.DeleteAsync(id);
@@ -75,7 +73,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task DeleteAsync_ById_InvalidId()
         {
             //Arrange 
-            int id = 1;
+            string id = "";
 
             //Act
             var actual = await _imageService.DeleteAsync(id);
@@ -104,7 +102,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task GetAsync_ById_ok()
         {
             //Arrange 
-            int id = 1;
+            string id = "";
             var expected = ImageApplicationStub.image_1;
 
             //Act
@@ -120,7 +118,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task GetAsync_ById_InvalidId_ExpectedNulL()
         {
             //Arrange 
-            int id = 3;
+            string id = "";
 
             //Act
             var actual = await _imageService.GetAsync(id);

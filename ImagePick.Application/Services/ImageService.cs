@@ -24,7 +24,7 @@ namespace ImagePick.Application.Services
             return ImageMapper.Map(result);
         }
 
-        public async Task<bool> DeleteAsync( int id )
+        public async Task<bool> DeleteAsync( string id )
         {
             return await _albumRepository.DeleteAsync(id);
         }
@@ -36,7 +36,7 @@ namespace ImagePick.Application.Services
             return result.Select(ImageMapper.Map);
         }
 
-        public async Task<ImageApplication> GetAsync( int id )
+        public async Task<ImageApplication> GetAsync( string id )
         {
             var entity = await _albumRepository.GetAsync(id);
 
