@@ -38,21 +38,37 @@ export class LikeButtonComponent implements OnInit {
   addLike() {
     
     const album = this.albums?.find(x => x.name === 'Me Gusta');
-    
-    const image: Image = {
-      id: this.image.id,
-      regularUrl: this.image.urls.regular,
-      smallUrl: this.image.urls.small,
-      thumbUrl: this.image.urls.thumb,
-      userName: this.image.user.name,
-      userProfileImageSmall: this.image.user.profile_image.small,
-      userHtmlLink: this.image.user.links.html,
-      albumId: album?.id,
-    }
 
-    this.apiService.create(image, 'Images').subscribe(x => {
-      this.liked = true;
+    this.apiService.getById('Images', this.image.id).subscribe( (image: Image) =>{
+      console.log(image);
+      image.albumId = album?.id;
+      this.apiService.update(image, 'Images').subscribe(z => {
+        console.log(z);
+        this.liked = true;
+      });
+
+
+    }, error => {
+      if (error.status === 404) {
+        const image: Image = {
+          id: this.image.id,
+          regularUrl: this.image.urls.regular,
+          smallUrl: this.image.urls.small,
+          thumbUrl: this.image.urls.thumb,
+          userName: this.image.user.name,
+          userProfileImageSmall: this.image.user.profile_image.small,
+          userHtmlLink: this.image.user.links.html,
+          albumId: album?.id,
+        }
+    
+        this.apiService.create(image, 'Images').subscribe(x => {
+          this.liked = true;
+        })
+      } else{
+        console.log(error);
+      }
     })
+    
   }
 
   
