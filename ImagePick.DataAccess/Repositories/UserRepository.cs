@@ -145,6 +145,15 @@ namespace ImagePick.DataAccess.Repositories
                     FirstName = firstName,
                     LastName = lastName,
                     Id = key,
+                    Albums = new List<Album>()
+                    {
+                        new Album()
+                        {
+                            Id = 0,
+                            CreatedAt = DateTime.UtcNow,
+                            Name = "Me Gusta",                            
+                        }
+                    }
                 };
                 await _userManager.CreateAsync(user);
             }

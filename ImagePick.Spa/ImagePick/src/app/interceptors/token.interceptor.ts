@@ -14,9 +14,9 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private jwtService: JwtService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.jwtService.getToken();
     const imageRequest = request.headers.get('Authorization');
     if (!imageRequest) {
+      const token = this.jwtService.getToken();
       if (token) {
         request = request.clone({
           setHeaders: {

@@ -10,7 +10,8 @@
         <app-like-button></app-like-button>
         <app-add-album-button
          [albums]="album$ | async"
-         [user]="user">
+         [user]="user"
+         [imageId]="item.id">
       </app-add-album-button>
       </div>
     </div>

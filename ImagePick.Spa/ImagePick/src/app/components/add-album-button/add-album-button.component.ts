@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/providers/api.service';
 export class AddAlbumButtonComponent implements OnInit {
   @Input() albums: Album[] | null = [];
   @Input() user: UserToken | null | undefined;
+  @Input() imageId: string | undefined;
 
   private controller = 'Albums'
   album: Album | undefined;
@@ -27,17 +28,20 @@ export class AddAlbumButtonComponent implements OnInit {
 
   addAlbum(name: string) {
 
-    this.album = {
-      createdAt: new Date(),
-      name,
-      userId: this.user?.userId || undefined,
-    }
-    
-    this.apiService.create(this.album, this.controller).subscribe(x => {
-      console.log(x);
+    console.log('albumName',name, 'id', this.imageId)
 
-    })
+    // this.album = {
+    //   createdAt: new Date(),
+    //   name,
+    //   userId: this.user?.userId || undefined,
+    // }
+    
+    // this.apiService.create(this.album, this.controller).subscribe(x => {
+    //   console.log(x);
+
+    // })
 
   }
 
 }
+  
