@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Album } from 'src/app/models/album';
 import { Image } from 'src/app/models/image';
 import { ApiService } from 'src/app/providers/api.service';
@@ -16,12 +18,15 @@ export class LikeButtonComponent implements OnInit {
 
   likeAlbumId: number = 0;
 
-  liked = false;
+  liked$: Observable<boolean>;
 
   constructor(
     private apiService: ApiService,
     private likeService: LikedService,
   ) { 
+    this.liked$ = this.likeService.liked$.pipe(
+      map(x => x.like)
+    );
   }
 
   ngOnInit(): void {
@@ -33,13 +38,7 @@ export class LikeButtonComponent implements OnInit {
       this.apiService.getById(`Images/liked/${this.image.id}`, this.likeAlbumId.toString() )
         .subscribe((like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id) );
 
-    }, 400);
-
-    this.likeService.liked$.subscribe(like => {
-      if(this.image.id === like.imageId) {
-        this.liked = like.like;
-      }
-    })
+    }, 400);    
 
   }
 
