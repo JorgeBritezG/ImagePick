@@ -18,7 +18,7 @@ frontend:
 
 1. #### navigate angular directory 
     ```shell 
-    cd /ImagePick.Spa/ImagePick
+    cd ImagePick.Spa/ImagePick
     ```
 2. #### install dependencies
     ```shell
@@ -34,7 +34,7 @@ backend:
 
 1. #### navigate API directory
     ```shell 
-    cd /ImagePick.Api
+    cd ImagePick.Api
     ```
 2. #### Run dotnet
     ```shell 
