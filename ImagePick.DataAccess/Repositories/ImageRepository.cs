@@ -99,6 +99,7 @@ namespace ImagePick.DataAccess.Repositories
             try
             {
                 var entity = await _imagePickDbContext.Images
+                    .Include(x => x.Album)
                     .FirstOrDefaultAsync(x => x.Id == id);
 
                 return entity;

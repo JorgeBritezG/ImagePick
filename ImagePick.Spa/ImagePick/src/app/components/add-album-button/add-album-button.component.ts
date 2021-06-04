@@ -29,8 +29,6 @@ export class AddAlbumButtonComponent implements OnInit {
 
   addAlbum(name: string) {
 
-    //console.log('albumName',name, 'id', this.imageId)
-
     this.album = {
       createdAt: new Date(),
       name,

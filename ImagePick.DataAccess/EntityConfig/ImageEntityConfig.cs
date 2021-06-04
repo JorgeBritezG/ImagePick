@@ -15,6 +15,8 @@ namespace ImagePick.DataAccess.EntityConfig
             modelBuilder.Property(x => x.UserName).IsRequired();
             modelBuilder.Property(x => x.UserName).HasMaxLength(100);
 
+            modelBuilder.Property(x => x.AlbumId).IsRequired();
+
             modelBuilder.HasOne(x => x.Album)
                         .WithMany(x => x.Images)
                         .OnDelete(DeleteBehavior.Cascade);
