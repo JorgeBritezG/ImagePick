@@ -13,6 +13,7 @@ import { JwtService } from './providers/jwt.service';
 import { AuthenticateService } from './providers/authenticate.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ApiService } from './providers/api.service';
+import { LikedService } from './providers/liked.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ApiService } from './providers/api.service';
     JwtService,
     AuthenticateService,
     ApiService,
+    LikedService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

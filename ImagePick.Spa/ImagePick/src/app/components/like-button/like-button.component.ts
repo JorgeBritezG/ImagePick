@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Album } from 'src/app/models/album';
 import { Image } from 'src/app/models/image';
 import { ApiService } from 'src/app/providers/api.service';
+import { LikedService } from 'src/app/providers/liked.service';
 
 @Component({
   selector: 'app-like-button',
@@ -15,12 +16,13 @@ export class LikeButtonComponent implements OnInit {
 
   likeAlbumId: number = 0;
 
-
   liked = false;
 
   constructor(
     private apiService: ApiService,
-  ) { }
+    private likeService: LikedService,
+  ) { 
+  }
 
   ngOnInit(): void {
 
@@ -28,10 +30,16 @@ export class LikeButtonComponent implements OnInit {
     setTimeout(() => {
       this.likeAlbumId = this.albums?.find(x => x.name === 'Me Gusta')?.id ?? 0;
 
-      this.apiService.getById(`Images/liked/${this.image.id}`, this.likeAlbumId.toString() ).subscribe( liked => {
-        this.liked = liked
-      }, error => this.liked = false);      
+      this.apiService.getById(`Images/liked/${this.image.id}`, this.likeAlbumId.toString() )
+        .subscribe((like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id) );
+
     }, 400);
+
+    this.likeService.liked$.subscribe(like => {
+      if(this.image.id === like.imageId) {
+        this.liked = like.like;
+      }
+    })
 
   }
 
@@ -44,8 +52,8 @@ export class LikeButtonComponent implements OnInit {
       image.albumId = album?.id;
       this.apiService.update(image, 'Images').subscribe(z => {
         console.log(z);
-        this.liked = true;
-      });
+        this.likeService.like(this.image.id);
+      }, error => this.likeService.unLike(this.image.id))
 
 
     }, error => {
@@ -62,10 +70,11 @@ export class LikeButtonComponent implements OnInit {
         }
     
         this.apiService.create(image, 'Images').subscribe(x => {
-          this.liked = true;
+          this.likeService.like(this.image.id);
         })
       } else{
         console.log(error);
+        this.likeService.unLike(this.image.id);
       }
     })
     

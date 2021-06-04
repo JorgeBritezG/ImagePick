@@ -5,7 +5,12 @@
   </a>
     <ul class="dropdown-menu">
       <ng-container *ngFor="let item of albums">
-        <li *ngIf="item"><a class="dropdown-item" (click)="addImageToAlbum(item)">{{ item.name }}</a></li>
+        <li *ngIf="item">
+          <a class="dropdown-item" (click)="addImageToAlbum(item)">
+            {{ item.name }}
+            <i class="bi bi-check" *ngIf="item.id === imageApi?.albumId"></i>
+          </a>
+        </li>
       </ng-container> 
       <li><hr class="dropdown-divider"></li>
       <li>
