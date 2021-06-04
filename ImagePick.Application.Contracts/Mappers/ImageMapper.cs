@@ -7,6 +7,14 @@ namespace ImagePick.Application.Contracts.Mappers
     {
         public static Image Map( ImageApplication dto )
         {
+            if (dto.Album != null)
+            {
+                if (dto.Album.Images != null)
+                {
+                    dto.Album.Images = null;
+                }
+            }
+
             return new Image()
             {
                 Id = dto.Id,
@@ -16,13 +24,22 @@ namespace ImagePick.Application.Contracts.Mappers
                 UserName = dto.UserName.Trim(),
                 UserProfileImageSmall = dto.UserProfileImageSmall.Trim(),
                 UserHtmlLink = dto.UserHtmlLink.Trim(),
-                AlbumId = dto.AlbumId, 
+                AlbumId = dto.AlbumId,
+                Album = dto.Album == null ? null : AlbumMapper.Map(dto.Album),
 
             };
         }
 
         public static ImageApplication Map( Image dto )
         {
+            if ( dto.Album != null )
+            {
+                if ( dto.Album.Images != null )
+                {
+                    dto.Album.Images = null;
+                }
+            }
+
             return new ImageApplication()
             {
                 Id = dto.Id,
@@ -33,7 +50,7 @@ namespace ImagePick.Application.Contracts.Mappers
                 UserProfileImageSmall = dto.UserProfileImageSmall.Trim(),
                 UserHtmlLink = dto.UserHtmlLink.Trim(),
                 AlbumId = dto.AlbumId,
-
+                Album = dto.Album == null ? null : AlbumMapper.Map(dto.Album),
             };
         }
     }

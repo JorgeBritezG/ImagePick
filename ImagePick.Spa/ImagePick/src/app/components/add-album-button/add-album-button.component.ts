@@ -13,6 +13,8 @@ export class AddAlbumButtonComponent implements OnInit {
   @Input() albums: Album[] | null = [];
   @Input() user: UserToken | null | undefined;
   @Input() image: any | undefined;
+  
+  imageApi: Image | undefined;
 
   private controller = 'Albums'
   album: Album | undefined;
@@ -21,10 +23,14 @@ export class AddAlbumButtonComponent implements OnInit {
   constructor(
     private apiService: ApiService,
   ) {
+    
    }
 
   ngOnInit(): void {
-        
+    this.apiService.getById('Images', this.image.id).subscribe(image => {
+      console.log('image', image);
+      this.imageApi = image;
+    })
   }
 
   addAlbum(name: string) {
