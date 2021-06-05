@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/af587a29-ef10-4c1b-9af9-4a77a4e57eeb/resourceGroups/Sansys/providers/Microsoft.Web/sites/imagepick",
+  "appService.deploySubpath": "dist"
+}
