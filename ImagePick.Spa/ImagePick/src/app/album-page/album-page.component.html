@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="mt-5">
+  <div *ngFor="let item of images$ | async">
+    <div class="card-header">
+      <a href="{{ item.userHtmlLink }}">
+        <img class="rounded-circle" src="{{ item.userProfileImageSmall }}" alt="">
+        {{ item.userName }}
+      </a>
+    </div> 
+    <div class="card">
+      <img src="{{ item.regularUrl }}" alt="">
+      <div class="card-body">
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<a (click)="addLike()">
+  <i *ngIf="liked$ | async; else elseBlock" class="bi bi-heart-fill fs-2 me-1"></i>
+  <ng-template #elseBlock>
+    <i class="bi bi-heart fs-2 me-1"></i>
+  </ng-template>
+</a>

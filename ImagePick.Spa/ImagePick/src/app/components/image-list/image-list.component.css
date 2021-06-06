@@ -1,0 +1,11 @@
+.full-width {
+  width: 100%;
+}
+
+.card {
+  width: 100% !important;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}

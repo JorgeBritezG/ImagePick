@@ -1,0 +1,22 @@
+<div class="full-width">
+  <ng-container *ngFor="let item of images$ | async">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        <img class="rounded-circle" src="{{item.user.profile_image.small}}" alt="">
+        {{ item.user.name }}
+      </div>  
+      <img src="{{item.urls.regular}}" class="card-img-top" alt="{{item.alt_description}}">  
+      <div class="card-body text-center d-flex justify-content-center">      
+        <app-like-button
+          [image]="item"
+          [albums]="albums">
+        </app-like-button>
+        <app-add-album-button
+         [albums]="album$ | async"
+         [user]="user"
+         [image]="item">
+      </app-add-album-button>
+      </div>
+    </div>
+  </ng-container>
+</div>

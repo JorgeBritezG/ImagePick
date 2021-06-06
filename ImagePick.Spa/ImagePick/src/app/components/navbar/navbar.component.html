@@ -1,0 +1,16 @@
+<nav class="navbar fixed-top navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-camera-fill"></i>
+      ImagePick
+    </a>
+    <div *ngIf="!logged">
+      <a class="btn btn-primary" [routerLink]="['/login']">Login</a>
+    </div>
+    <div *ngIf="logged">
+      <a [routerLink]="['/profile']">
+        <img class="rounded-circle" src="{{ model?.photoUrl }}" alt="Profile Photo" width="36" height="36">
+      </a>
+    </div>
+  </div>
+</nav>

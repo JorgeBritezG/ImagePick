@@ -1,0 +1,27 @@
+
+<div class="btn-group dropup">
+  <a data-bs-container="body" data-bs-toggle="dropdown"  aria-expanded="false">
+    <i class="bi bi-plus-square fs-2 ms-1"></i>
+  </a>
+    <ul class="dropdown-menu">
+      <ng-container *ngFor="let item of albums">
+        <li *ngIf="item">
+          <a class="dropdown-item" (click)="addImageToAlbum(item)">
+            {{ item.name }}
+            <i class="bi bi-check" *ngIf="item.id === imageApi?.albumId"></i>
+          </a>
+        </li>
+      </ng-container> 
+      <li><hr class="dropdown-divider"></li>
+      <li>
+        <form class="p-1">
+          <div class="input-group mb-3">
+            <input #album type="text" class="form-control" placeholder="Add album" aria-label="add album" aria-describedby="button-addon2">
+            <button class="btn btn-success" type="button" id="button-addon2" (click)="addAlbum(album.value)">
+              <i class="bi bi-check"></i>
+            </button>
+          </div>
+        </form>
+      </li>
+    </ul>
+</div>
