@@ -27,16 +27,6 @@ namespace ImagePick.Api
 
             services.AddCors();
 
-            //services.AddCors(x => x.AddPolicy(name: "ImagePickOrigins", builder => {
-            //    builder.WithOrigins("http://localhost:4200",
-            //                        "https://imagepick-315102.web.app",
-            //                        "https://imagepick-api.azurewebsites.net",
-            //                        "https://imagepick-api.azurewebsites.net/Auth/googleauthenticate")
-            //                        .AllowAnyHeader()
-            //                        .AllowAnyMethod();
-            
-            //}));
-
             services.AddTransient<IImagePickDbContext, ImagePickDbContext>();
             services.AddDbContext<ImagePickDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
