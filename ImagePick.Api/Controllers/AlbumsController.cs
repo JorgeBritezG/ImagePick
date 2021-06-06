@@ -12,7 +12,7 @@ namespace ImagePick.Api.Controllers
     [Produces("application/json")]
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AlbumsController : ControllerBase
     {
         private readonly IAlbumService _albumService;

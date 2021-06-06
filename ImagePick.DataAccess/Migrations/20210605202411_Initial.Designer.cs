@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImagePick.DataAccess.Migrations
 {
     [DbContext(typeof(ImagePickDbContext))]
-    [Migration("20210603123459_ImageIdIntToString")]
-    partial class ImageIdIntToString
+    [Migration("20210605202411_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -26,12 +26,9 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
   this.subscription = this.socialAuthService.authState.subscribe(data => {
-    console.log(data);
     if (data) {
       this.model = data;
       this.albums$ = this.apiService.getAll(`Albums/by-user/${data?.id}`)
-
-      this.albums$.subscribe(x => console.log(x));
     }
     else {
       this.model = null;
@@ -42,7 +39,6 @@ export class ProfilePageComponent implements OnInit {
 }
 
 getSmallImage(album: Album) : string {
-  console.log('Album', album);
   if (!album) return '';
   
   if(album.images?.length === 0) return '';

@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.socialAuthService.authState.subscribe(data => {
-      console.log(data);
       if (data) {
         this.model = data;
         this.logged = true;

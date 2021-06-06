@@ -132,37 +132,42 @@ namespace ImagePick.DataAccess.Repositories
 
         private async Task<User> GetOrCreateExternalLoginUser( string provider, string key, string email, string firstName, string lastName )
         {
-            var user = await _userManager.FindByLoginAsync(provider, key);
-            if ( user != null )
-                return user;
-            user = await _userManager.FindByEmailAsync(email);
-            if ( user == null )
+            using ( var ctx = _userManager )
             {
-                user = new User
+                var user = await ctx.FindByLoginAsync(provider, key);
+                if ( user != null )
+                    return user;
+                user = await ctx.FindByEmailAsync(email);
+                if ( user == null )
                 {
-                    Email = email,
-                    UserName = email,
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Id = key,
-                    Albums = new List<Album>()
+                    user = new User
+                    {
+                        Email = email,
+                        UserName = email,
+                        FirstName = firstName,
+                        LastName = lastName,
+                        Id = key,
+                        Albums = new List<Album>()
                     {
                         new Album()
                         {
                             Id = 0,
                             CreatedAt = DateTime.UtcNow,
-                            Name = "Me Gusta",                            
+                            Name = "Me Gusta",
                         }
                     }
-                };
-                await _userManager.CreateAsync(user);
+                    };
+                    await ctx.CreateAsync(user);
+                }
+
+                var info = new UserLoginInfo(provider, key, provider.ToUpperInvariant());
+                var result = await ctx.AddLoginAsync(user, info);
+                if ( result.Succeeded )
+                    return user;
+                return null;
+
             }
 
-            var info = new UserLoginInfo(provider, key, provider.ToUpperInvariant());
-            var result = await _userManager.AddLoginAsync(user, info);
-            if ( result.Succeeded )
-                return user;
-            return null;
 
         }
     }

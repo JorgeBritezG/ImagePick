@@ -32,10 +32,18 @@ namespace ImagePick.Api.Controllers
         [HttpPost("googleauthenticate")]
         public async Task<IActionResult> GoogleAuthenticate( [FromBody] GoogleUserRequest request )
         {
-            if ( !ModelState.IsValid )
-                return BadRequest(ModelState.Values.SelectMany(it => it.Errors).Select(it => it.ErrorMessage));
+            try
+            {
+                if ( !ModelState.IsValid )
+                    return BadRequest(ModelState.Values.SelectMany(it => it.Errors).Select(it => it.ErrorMessage));
 
-            return Ok(GenerateUserToken(await _userService.AuthenticateGoogleUserAsync(request)));
+                return Ok(GenerateUserToken(await _userService.AuthenticateGoogleUserAsync(request)));
+            }
+            catch ( Exception ex )
+            {
+                return Conflict(ex.Message);
+                throw;
+            }
         }
 
         #region Private Methods

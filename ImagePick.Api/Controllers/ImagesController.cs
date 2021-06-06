@@ -91,11 +91,6 @@ namespace ImagePick.Api.Controllers
             {
                 var result = await _imageService.GetAsync(id);
 
-                if ( result == null )
-                {
-                    return NotFound();
-                }
-
                 return Ok(result);
 
             }

@@ -1,9 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable, of, pipe } from 'rxjs';
+import { catchError, filter, map } from 'rxjs/operators';
 import { Album } from 'src/app/models/album';
 import { Image } from 'src/app/models/image';
+import { Like } from 'src/app/models/like';
+import { UserToken } from 'src/app/models/user-token';
 import { ApiService } from 'src/app/providers/api.service';
+import { AuthenticateService } from 'src/app/providers/authenticate.service';
 import { LikedService } from 'src/app/providers/liked.service';
 
 @Component({
@@ -14,6 +18,7 @@ import { LikedService } from 'src/app/providers/liked.service';
 export class LikeButtonComponent implements OnInit {
   @Input() image: any | undefined;
   @Input() albums: Album[] | null = [];
+  user: UserToken | null | undefined;
 
 
   likeAlbumId: number = 0;
@@ -23,59 +28,90 @@ export class LikeButtonComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private likeService: LikedService,
+    private authService: AuthenticateService,
+    private router: Router,
   ) { 
     this.liked$ = this.likeService.liked$.pipe(
-      map(x => x.like)
+      filter(f => f.imageId === this.image.id),
+      map(x => x.like )
     );
   }
 
   ngOnInit(): void {
 
+    this.authService.currentUser.subscribe((user) => {
+      if (user) {
+          
+        this.user = user;        
+      
+        setTimeout(() => {
+              
+          this.likeAlbumId = this.albums?.find(x => x.name === 'Me Gusta')?.id ?? 0;
     
-    setTimeout(() => {
-      this.likeAlbumId = this.albums?.find(x => x.name === 'Me Gusta')?.id ?? 0;
+          this.apiService.getById(`Images/liked/${this.image.id}`, this.likeAlbumId.toString() )
+          .subscribe(
+            (like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id),
+            error => console.log(error)
+          );
+    
+        }, 600);  
 
-      this.apiService.getById(`Images/liked/${this.image.id}`, this.likeAlbumId.toString() )
-        .subscribe((like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id) );
+      }
 
-    }, 400);    
+    }, error => console.error(error))    
 
   }
 
   addLike() {
-    
-    const album = this.albums?.find(x => x.name === 'Me Gusta');
 
-    this.apiService.getById('Images', this.image.id).subscribe( (image: Image) =>{
-      console.log(image);
-      image.albumId = album?.id;
-      this.apiService.update(image, 'Images').subscribe(z => {
-        console.log(z);
-        this.likeService.like(this.image.id);
-      }, error => this.likeService.unLike(this.image.id))
+    if (this.user) {
 
-
-    }, error => {
-      if (error.status === 404) {
-        const image: Image = {
-          id: this.image.id,
-          regularUrl: this.image.urls.regular,
-          smallUrl: this.image.urls.small,
-          thumbUrl: this.image.urls.thumb,
-          userName: this.image.user.name,
-          userProfileImageSmall: this.image.user.profile_image.small,
-          userHtmlLink: this.image.user.links.html,
-          albumId: album?.id,
+      const album = this.albums?.find(x => x.name === 'Me Gusta');
+  
+      this.apiService.getById('Images', this.image.id).subscribe( (image: Image) => {
+        if (image) {
+          const imageToUpdate: Image = {
+            id: image.id,
+            regularUrl: image.regularUrl,
+            smallUrl: image.smallUrl,
+            thumbUrl: image.thumbUrl,
+            userHtmlLink: image.userHtmlLink,
+            userName: image.userName,
+            userProfileImageSmall: image.userProfileImageSmall,
+            albumId: album?.id,
+          }
+  
+          this.apiService.update(imageToUpdate, 'Images').subscribe(z => {
+            this.likeService.like(this.image.id);
+          }, error => this.likeService.unLike(this.image.id))
+        } else {
+          const image: Image = {
+            id: this.image.id,
+            regularUrl: this.image.urls.regular,
+            smallUrl: this.image.urls.small,
+            thumbUrl: this.image.urls.thumb,
+            userName: this.image.user.name,
+            userProfileImageSmall: this.image.user.profile_image.small,
+            userHtmlLink: this.image.user.links.html,
+            albumId: album?.id,
+          }
+      
+          this.apiService.create(image, 'Images').subscribe(x => {
+            this.likeService.like(this.image.id);
+          });
         }
-    
-        this.apiService.create(image, 'Images').subscribe(x => {
-          this.likeService.like(this.image.id);
-        })
-      } else{
+        
+  
+  
+      }, error => {
         console.log(error);
         this.likeService.unLike(this.image.id);
-      }
-    })
+      });
+
+    } else {
+      this.router.navigate(['/login']);
+    }
+
     
   }
 

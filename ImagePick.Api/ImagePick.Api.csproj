@@ -33,4 +33,10 @@
     <ProjectReference Include="..\ImagePick.DataAccess\ImagePick.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ImagePickDb.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

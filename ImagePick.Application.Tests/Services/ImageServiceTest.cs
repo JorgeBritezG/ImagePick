@@ -3,6 +3,7 @@ using ImagePick.Application.Contracts.Models;
 using ImagePick.Application.Contracts.Services;
 using ImagePick.Application.Services;
 using ImagePick.Application.Unit.Tests.MockRespository;
+using ImagePick.Application.Unit.Tests.MockService;
 using ImagePick.Application.Unit.Tests.Stubs;
 using ImagePick.DataAccess.Contracts.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,8 +21,9 @@ namespace ImagePick.Application.Unit.Tests.Services
         public static void Setup(TestContext context)
         {
             Mock<IImageRepository> _imageRepository = new ImageRepositoryMock()._imageRepository;
+            Mock<IAlbumService> _albumService = new AlbumServiceMock()._albumService;
 
-            _imageService = new ImageService(_imageRepository.Object);
+            _imageService = new ImageService(_imageRepository.Object, _albumService.Object);
         }
 
         [TestMethod]

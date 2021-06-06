@@ -23,20 +23,23 @@ namespace ImagePick.Api
 
         public void ConfigureServices( IServiceCollection services )
         {
-            services.AddControllers()
-                    .AddNewtonsoftJson();
-
-            services.AddCors(x => x.AddPolicy(name: "ImagePickOrigins", builder => {
-                builder.WithOrigins("http://localhost:4200",
-                                    "https://imagepick-315102.web.app")
-                                    .AllowAnyHeader()
-                                    .AllowAnyMethod();
             
-            }));
+
+            services.AddCors();
+
+            //services.AddCors(x => x.AddPolicy(name: "ImagePickOrigins", builder => {
+            //    builder.WithOrigins("http://localhost:4200",
+            //                        "https://imagepick-315102.web.app",
+            //                        "https://imagepick-api.azurewebsites.net",
+            //                        "https://imagepick-api.azurewebsites.net/Auth/googleauthenticate")
+            //                        .AllowAnyHeader()
+            //                        .AllowAnyMethod();
+            
+            //}));
 
             services.AddTransient<IImagePickDbContext, ImagePickDbContext>();
             services.AddDbContext<ImagePickDbContext>(options =>
-                options.UseSqlite("Data Source=ImagePickDb.db"));
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             IdentityConfig.CreateIdentityIfNotCreated(services);
 
@@ -45,6 +48,9 @@ namespace ImagePick.Api
             IoCRegister.AddRegistration(services);
 
             SwaggerConfig.AddRegistration(services);
+
+            services.AddControllers(options => options.RespectBrowserAcceptHeader = true)
+                    .AddNewtonsoftJson();
 
         }
 
@@ -58,7 +64,7 @@ namespace ImagePick.Api
 
             app.UseRouting();
             
-            app.UseCors("ImagePickOrigins");
+            app.UseCors(it => it.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseSwagger();
 
