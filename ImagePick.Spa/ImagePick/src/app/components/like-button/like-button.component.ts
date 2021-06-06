@@ -40,19 +40,31 @@ export class LikeButtonComponent implements OnInit {
 
     
     if (this.user) {
-      
-      const likeAlbumId = this.albums?.find(x => x.name === 'Me Gusta')?.id;
 
-  
-        if(likeAlbumId){
-          this.apiService.getById(`Images/liked/${this.image.id}`, likeAlbumId.toString() )
-          .subscribe(
-            (like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id),
-            error => console.log(error)
-          );
-        } 
+       
+      this.getImageLikes(this.albums); 
+
+      
     }
 
+  }
+
+  getImageLikes(albums: Album[] | null) {
+
+    if (albums) {
+      const likeAlbumId = albums.find(x => x.name === 'Me Gusta')?.id;
+  
+      if(likeAlbumId){
+        this.apiService.getById(`Images/liked/${this.image.id}`, likeAlbumId.toString() )
+        .subscribe(
+          (like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id),
+          error => console.log(error)
+        );
+      } 
+    } else {
+      this.getImageLikes(this.albums);
+    }
+    
   }
 
   addLike() {
