@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, pipe } from 'rxjs';
-import { catchError, filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { Album } from 'src/app/models/album';
 import { Image } from 'src/app/models/image';
-import { Like } from 'src/app/models/like';
 import { UserToken } from 'src/app/models/user-token';
 import { ApiService } from 'src/app/providers/api.service';
 import { AuthenticateService } from 'src/app/providers/authenticate.service';

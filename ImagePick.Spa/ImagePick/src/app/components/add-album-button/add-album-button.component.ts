@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError, filter } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Album } from 'src/app/models/album';
 import { Image } from 'src/app/models/image';
 import { UserToken } from 'src/app/models/user-token';
@@ -47,11 +46,13 @@ export class AddAlbumButtonComponent implements OnInit {
   }
 
   getImageApi() {
-    this.apiService.getById('Images', this.image.id).pipe(
-      filter(x => x !== null)
-    ).subscribe(image => {
-      this.imageApi = image;
-    }, error => console.error(error))
+    if(this.user) {
+      this.apiService.getById('Images', this.image.id).pipe(
+        filter(x => x !== null)
+      ).subscribe(image => {
+        this.imageApi = image;
+      }, error => console.error(error))
+    }
   }
 
   addAlbum(name: string) {

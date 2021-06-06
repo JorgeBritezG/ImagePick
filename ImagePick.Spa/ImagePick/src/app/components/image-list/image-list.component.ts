@@ -34,7 +34,7 @@ export class ImageListComponent implements OnInit {
       if (user) {
           
         this.user = user;
-        this.album$ = this.apiService.getAll(`Albums/by-user/${user?.userId}`);
+        this.album$ = this.apiService.getAll(`Albums/by-user/${user.userId}`);
 
       }
 
