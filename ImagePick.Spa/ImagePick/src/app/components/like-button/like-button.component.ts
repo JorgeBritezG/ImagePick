@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { LikedService } from 'src/app/providers/liked.service';
   templateUrl: './like-button.component.html',
   styleUrls: ['./like-button.component.css']
 })
-export class LikeButtonComponent implements OnInit {
+export class LikeButtonComponent implements OnInit, AfterViewInit {
   @Input() image: any | undefined;
   @Input() albums: Album[] | null = [];
   user: UserToken | null | undefined;
@@ -38,25 +38,24 @@ export class LikeButtonComponent implements OnInit {
 
     this.user = this.jwtService.getUser();
 
-    this.userCallback(this.user)
-    
-
   }
 
-  userCallback(user: UserToken | null | undefined) {
+  ngAfterViewInit() {
 
-    if (user) {
+    setTimeout(() => {
 
-       
-      this.getImageLikes(this.albums); 
+      if (this.user) {
+ 
+        this.getImageLikes(this.albums);
 
+      }
       
-    } else {
-      this.userCallback(this.user);
-    }
+    }, 400);
+
 
   }
 
+ 
   getImageLikes(albums: Album[] | null) {
 
     if (albums) {
