@@ -38,13 +38,21 @@ export class LikeButtonComponent implements OnInit {
 
     this.user = this.jwtService.getUser();
 
+    this.userCallback(this.user)
     
-    if (this.user) {
+
+  }
+
+  userCallback(user: UserToken | null | undefined) {
+
+    if (user) {
 
        
       this.getImageLikes(this.albums); 
 
       
+    } else {
+      this.userCallback(this.user);
     }
 
   }
@@ -55,9 +63,16 @@ export class LikeButtonComponent implements OnInit {
       const likeAlbumId = albums.find(x => x.name === 'Me Gusta')?.id;
   
       if(likeAlbumId){
-        this.apiService.getById(`Images/liked/${this.image.id}`, likeAlbumId.toString() )
+        const imageId = this.image.id;
+        this.apiService.getById(`Images/liked/${imageId}`, likeAlbumId.toString() )
         .subscribe(
-          (like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id),
+          (like: boolean) => {
+            if(like) {
+              this.likeService.like(imageId)
+            }  else {
+              this.likeService.unLike(imageId);
+            } 
+          },
           error => console.log(error)
         );
       } 
