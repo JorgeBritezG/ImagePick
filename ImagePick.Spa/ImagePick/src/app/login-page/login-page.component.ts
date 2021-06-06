@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GoogleLoginProvider, SocialUser } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
 import { SocialAuthService } from "angularx-social-login";
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthenticateService } from '../providers/authenticate.service';
 
 @Component({
@@ -27,7 +27,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
 
     this.subscription = this.socialLoginService.authState.subscribe(data => {
-      console.log(data);
       if (data) {
         this.router.navigate(['/']);
       }
@@ -38,10 +37,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   signInWithGoogle(): void {
     this.isLogging = true;
     this.socialLoginService.signIn(GoogleLoginProvider.PROVIDER_ID).then(googleUser => {
-      console.log(googleUser);
       this.authService.googleLogin(googleUser)
         .subscribe((data) => {
-          console.log(data);
           this.router.navigate(['/']);
           this.isLogging = false;
         });

@@ -6,7 +6,7 @@ import { Album } from 'src/app/models/album';
 import { Image } from 'src/app/models/image';
 import { UserToken } from 'src/app/models/user-token';
 import { ApiService } from 'src/app/providers/api.service';
-import { AuthenticateService } from 'src/app/providers/authenticate.service';
+import { JwtService } from 'src/app/providers/jwt.service';
 import { LikedService } from 'src/app/providers/liked.service';
 
 @Component({
@@ -20,15 +20,13 @@ export class LikeButtonComponent implements OnInit {
   user: UserToken | null | undefined;
 
 
-  likeAlbumId: number = 0;
-
   liked$: Observable<boolean>;
 
   constructor(
     private apiService: ApiService,
     private likeService: LikedService,
-    private authService: AuthenticateService,
     private router: Router,
+    private jwtService: JwtService,
   ) { 
     this.liked$ = this.likeService.liked$.pipe(
       filter(f => f.imageId === this.image.id),
@@ -38,26 +36,22 @@ export class LikeButtonComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.currentUser.subscribe((user) => {
-      if (user) {
-          
-        this.user = user;        
-      
-        setTimeout(() => {
-              
-          this.likeAlbumId = this.albums?.find(x => x.name === 'Me Gusta')?.id ?? 0;
+    this.user = this.jwtService.getUser();
+
     
-          this.apiService.getById(`Images/liked/${this.image.id}`, this.likeAlbumId.toString() )
+    if (this.user) {
+      
+      const likeAlbumId = this.albums?.find(x => x.name === 'Me Gusta')?.id;
+
+  
+        if(likeAlbumId){
+          this.apiService.getById(`Images/liked/${this.image.id}`, likeAlbumId.toString() )
           .subscribe(
             (like: boolean) => like ? this.likeService.like(this.image.id) : this.likeService.unLike(this.image.id),
             error => console.log(error)
           );
-    
-        }, 600);  
-
-      }
-
-    }, error => console.error(error))    
+        } 
+    }
 
   }
 
