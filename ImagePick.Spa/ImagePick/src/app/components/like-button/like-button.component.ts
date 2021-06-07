@@ -67,7 +67,7 @@ export class LikeButtonComponent implements OnInit, AfterViewInit {
         .subscribe(
           (like: boolean) => {
             if(like) {
-              this.likeService.like(imageId)
+              this.likeService.like(imageId);
             }  else {
               this.likeService.unLike(imageId);
             } 

@@ -62,7 +62,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task DeleteAsync_ById_Ok()
         {
             //Arrange 
-            string id = "";
+            string id = "x";
 
             //Act
             var actual = await _imageService.DeleteAsync(id);
@@ -104,7 +104,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task GetAsync_ById_ok()
         {
             //Arrange 
-            string id = "";
+            string id = "xxx";
             var expected = ImageApplicationStub.image_1;
 
             //Act
@@ -120,7 +120,7 @@ namespace ImagePick.Application.Unit.Tests.Services
         public async Task GetAsync_ById_InvalidId_ExpectedNulL()
         {
             //Arrange 
-            string id = "";
+            string id = "zzz";
 
             //Act
             var actual = await _imageService.GetAsync(id);
