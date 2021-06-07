@@ -5,7 +5,7 @@ demo [frontend](https://imagepick-315102.web.app).
 
 demo [Backend (Swagger)](https://imagepick-api.azurewebsites.net/swagger).
 
-## Enviroment
+## Environment
 
 - `.Net Core 3.1 sdk v3.1.301`
 - `Angular v12.0.1`
